@@ -1,5 +1,9 @@
+import path from 'path'
+
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WebpackConfig from 'webpack-config'
+
+const rootPath = (...args) => path.resolve(__dirname, '..', ...args)
 
 const stats = {
   assets: true,
@@ -37,6 +41,9 @@ export default new WebpackConfig().merge({
   resolve: {
     extensions: ['', '.js', '.json', '.jsx'],
     modulesDirectories: ['node_modules'],
+  },
+  resolveLoader: {
+    root: rootPath('node_modules'),
   },
   stats,
   plugins: [
