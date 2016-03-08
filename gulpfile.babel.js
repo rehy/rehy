@@ -13,9 +13,12 @@ import shell from 'gulp-shell'
 const paths = {
   packages: 'packages/*',
   packageJSONs: ['package.json', 'packages/*/package.json'],
-  scripts: _.map(glob.sync('packages/*'), (packageRoot) => {
-    return `${packageRoot}/src/**/*.js`
-  }),
+  scripts: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => {
+    return [
+      `${packageRoot}/src/**/*.js`,
+      `${packageRoot}/src/**/*.jsx`,
+    ]
+  })),
   statics: _.map(glob.sync('packages/*'), (packageRoot) => {
     return `${packageRoot}/src/**/*.nunjucks`
   }),
@@ -29,7 +32,7 @@ const resolvePackageRoot = (file) => {
 }
 
 const isJS = (file) => {
-  return _.endsWith(file.path, '.js')
+  return _.endsWith(file.path, '.js') || _.endsWith(file.path, '.jsx')
 }
 
 gulp.task('install', () => {
@@ -48,7 +51,7 @@ gulp.task('ncu', () => {
     }))
 })
 
-gulp.task('publish', () => {
+gulp.task('publish', ['build'], () => {
   return gulp.src(paths.packages, {read: false})
     .pipe(shell([
       'cd <%= file.path %>; npm publish',
