@@ -75,7 +75,13 @@ gulp.task('build', () => {
   }))
   .pipe(cache('build'))
   .pipe(changed(resolvePackageRoot))
-  .pipe(gulpif(isJS, babel()))
+  .pipe(gulpif(isJS, babel({
+    presets: [
+      'es2015',
+      'stage-3',
+      'react',
+    ],
+  })))
   .pipe(gulp.dest(resolvePackageRoot))
 })
 
