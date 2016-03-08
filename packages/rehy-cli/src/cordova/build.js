@@ -7,6 +7,8 @@ import nunjucks from 'nunjucks'
 
 import webpackBuild from '../webpack'
 
+import cordovaBuildPlugin from './webpack-plugin'
+
 const renderConfigXML = ({templatePath, templateContext}) => {
   const templateFilename = templatePath || path.join(__dirname, 'config.xml.nunjucks')
   const templateString = fs.readFileSync(templateFilename, 'utf8')
@@ -21,7 +23,21 @@ const prepareBuildFolder = ({buildDir, configXML = {}}) => {
 }
 
 export default ({webpackConfig}) => {
-  const buildDir = '.rehy/local/cordova-build'
+  const buildDir = path.join(process.cwd(), '.rehy/local/cordova-build')
   prepareBuildFolder({buildDir})
-  webpackBuild({webpackConfig}).catch(console.log.bind(console))
+
+  const webpackOutputPath = '.rehy/local/webpack-dist'
+  webpackBuild({
+    webpackConfigs: [webpackConfig, {
+      output: {
+        path: webpackOutputPath,
+      },
+      plugins: [
+        cordovaBuildPlugin({
+          cordovaDir: buildDir,
+          sourcePath: webpackOutputPath,
+        }),
+      ],
+    }],
+  }).catch(console.log.bind(console))
 }
