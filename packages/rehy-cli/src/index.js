@@ -59,7 +59,7 @@ const handleArguments = (env) => {
   const exported = require(env.configPath)
   log.info('Using rehyfile', chalk.magenta(tildify(env.configPath)))
 
-  cordovaBulid({})
+  cordovaBulid(exported)
 }
 
 export default () => {
