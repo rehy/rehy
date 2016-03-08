@@ -14,4 +14,11 @@ export default {
       'Manually set path of rehyfile. Useful if you have multiple rehyfiles. ' +
       'This will set the CWD to the rehyfile directory as well.'),
   },
+  cwd: {
+    type: 'string',
+    requiresArg: true,
+    desc: chalk.gray(
+      'Manually set the CWD. The search for the rehyfile, ' +
+      'as well as the relativity of all requires will be from here.'),
+  },
 }

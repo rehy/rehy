@@ -5,7 +5,9 @@ import gulp from 'gulp'
 import babel from 'gulp-babel'
 import cache from 'gulp-cached'
 import changed from 'gulp-changed'
+import gulpif from 'gulp-if'
 import install from 'gulp-install'
+import plumber from 'gulp-plumber'
 import shell from 'gulp-shell'
 
 const paths = {
@@ -14,6 +16,9 @@ const paths = {
   scripts: _.map(glob.sync('packages/*'), (packageRoot) => {
     return `${packageRoot}/src/**/*.js`
   }),
+  statics: _.map(glob.sync('packages/*'), (packageRoot) => {
+    return `${packageRoot}/src/**/*.nunjucks`
+  }),
 }
 
 const resolvePackageRoot = (file) => {
@@ -21,6 +26,10 @@ const resolvePackageRoot = (file) => {
   const pathParts = file.path.split('/')
   const packageRoot = _.join(_.take(pathParts, pathParts.lastIndexOf('packages') + 2), '/')
   return `${packageRoot}/lib`
+}
+
+const isJS = (file) => {
+  return _.endsWith(file.path, '.js')
 }
 
 gulp.task('install', () => {
@@ -51,11 +60,20 @@ gulp.task('publish', () => {
 })
 
 gulp.task('build', () => {
-  return gulp.src(paths.scripts)
-    .pipe(cache('build'))
-    .pipe(changed(resolvePackageRoot))
-    .pipe(babel())
-    .pipe(gulp.dest(resolvePackageRoot))
+  return gulp.src([
+    ...paths.scripts,
+    ...paths.statics,
+  ])
+  .pipe(plumber({
+    errorHandler(err) {
+      console.error(err)
+      this.emit('end')
+    },
+  }))
+  .pipe(cache('build'))
+  .pipe(changed(resolvePackageRoot))
+  .pipe(gulpif(isJS, babel()))
+  .pipe(gulp.dest(resolvePackageRoot))
 })
 
 gulp.task('watch', () => {
