@@ -1,0 +1,26 @@
+{
+  "name": "rehy-cli",
+  "version": "0.0.1",
+  "description": "Command line interface for rehy",
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "cordova": "^6.0.0",
+    "debug": "^2.2.0",
+    "exit": "^0.1.2",
+    "interpret": "^1.0.0",
+    "liftoff": "^2.2.0",
+    "yargs": "^4.2.0"
+  },
+  "repository": "ratson/rehy-cli",
+  "author": "Ratson",
+  "license": "MIT",
+  "bin": {
+    "rehy": "bin/rehy.js"
+  },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ]
+}
