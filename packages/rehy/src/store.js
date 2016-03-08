@@ -7,14 +7,10 @@ import thunk from 'redux-thunk'
 import * as baseReducers from './reducers'
 
 export default ({history, initialState, reducers, prepareMiddleware}) => {
-  const rootReducer = combineReducers({
-    ...baseReducers,
-    ...reducers,
-  })
-
+  const rootReducer = combineReducers(_.assign({}, baseReducers, reducers))
   const middleware = [responsiveStoreEnhancer]
   const applicableMiddleware = [routerMiddleware(history), thunk]
-  const preparedMiddleware = _.isFunction(prepareMiddleware) ? prepareMiddleware(middleware, applicableMiddleware) : [...middleware, applyMiddleware(...applicableMiddleware)]
+  const preparedMiddleware = _.isFunction(prepareMiddleware) ? prepareMiddleware({middleware, applicableMiddleware, applyMiddleware}) : [...middleware, applyMiddleware(...applicableMiddleware)]
 
   if (process.env.NODE_ENV === 'development') {
     const dev = require('./dev-tools/middleware').default
