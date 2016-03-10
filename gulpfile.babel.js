@@ -81,6 +81,7 @@ gulp.task('build', () => {
       'stage-3',
       'react',
     ],
+    plugins: ['transform-runtime'],
   })))
   .pipe(gulp.dest(resolvePackageRoot))
 })
