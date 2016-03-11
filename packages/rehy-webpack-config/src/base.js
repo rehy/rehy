@@ -42,9 +42,6 @@ export default new WebpackConfig().merge({
     extensions: ['', '.js', '.json', '.jsx'],
     modulesDirectories: ['node_modules'],
   },
-  resolveLoader: {
-    root: rootPath('node_modules'),
-  },
   stats,
   plugins: [
     new HtmlWebpackPlugin({
@@ -64,7 +61,7 @@ export default new WebpackConfig().merge({
   return {
     devServer: {
       historyApiFallback: {
-        index: config.publicPath,
+        index: config.output.publicPath,
       },
     },
   }

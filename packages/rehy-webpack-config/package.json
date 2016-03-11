@@ -3,19 +3,31 @@
   "version": "0.0.1",
   "description": "Webpack configuration for rehy",
   "main": "lib/index.js",
-  "dependencies": {
-    "babel-core": "^6.6.5",
+  "scripts": {
+    "prepublish": "gulp build"
+  },
+  "peerDependencies": {
     "babel-loader": "^6.2.4",
     "css-loader": "^0.23.1",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.0"
+  },
+  "dependencies": {
+    "babel-core": "^6.7.0",
     "debug": "^2.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
-    "html-webpack-plugin": "^2.9.0",
+    "html-webpack-plugin": "^2.10.0",
     "stats-webpack-plugin": "^0.3.1",
-    "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-config": "^4.0.0"
   },
-  "repository": "ratson/rehy-webpack-config",
+  "devDependencies": {
+    "babel-loader": "^6.2.4",
+    "css-loader": "^0.23.1",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.0"
+  },
+  "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-webpack-config",
   "author": "Ratson",
   "license": "MIT",
   "files": [
