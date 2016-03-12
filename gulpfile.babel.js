@@ -1,10 +1,11 @@
 import _ from 'lodash'
 import glob from 'glob'
 
-import gulp from 'gulp'
 import babel from 'gulp-babel'
 import cache from 'gulp-cached'
 import changed from 'gulp-changed'
+import clean from 'gulp-clean'
+import gulp from 'gulp'
 import gulpif from 'gulp-if'
 import install from 'gulp-install'
 import plumber from 'gulp-plumber'
@@ -12,6 +13,7 @@ import shell from 'gulp-shell'
 
 const paths = {
   packages: 'packages/*',
+  libs: 'packages/*/lib',
   packageJSONs: ['package.json', 'packages/*/package.json'],
   scripts: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => {
     return [
@@ -62,6 +64,11 @@ gulp.task('publish', ['build'], () => {
     }))
 })
 
+gulp.task('clean', () => {
+  return gulp.src(paths.libs, {read: false})
+    .pipe(clean())
+})
+
 gulp.task('build', () => {
   return gulp.src([
     ...paths.scripts,
@@ -81,7 +88,10 @@ gulp.task('build', () => {
       'stage-3',
       'react',
     ],
-    plugins: ['transform-runtime'],
+    plugins: [
+      'transform-export-extensions',
+      'transform-runtime',
+    ],
   })))
   .pipe(gulp.dest(resolvePackageRoot))
 })
