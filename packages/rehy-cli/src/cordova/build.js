@@ -5,7 +5,7 @@ import _ from 'lodash'
 import mkdirp from 'mkdirp'
 import nunjucks from 'nunjucks'
 
-import webpackBuild from '../webpack'
+import * as webpack from '../webpack'
 
 import cordovaBuildPlugin from './webpack-plugin'
 
@@ -26,18 +26,14 @@ export default ({webpackConfig}) => {
   const buildDir = path.join(process.cwd(), '.rehy/local/cordova-build')
   prepareBuildFolder({buildDir})
 
-  const webpackOutputPath = '.rehy/local/webpack-dist'
-  webpackBuild({
-    webpackConfigs: [webpackConfig, {
-      output: {
-        path: webpackOutputPath,
-      },
+  webpack.build(webpack.config.merge((config) => {
+    return {
       plugins: [
         cordovaBuildPlugin({
           cordovaDir: buildDir,
-          sourcePath: webpackOutputPath,
+          sourcePath: config.output.path,
         }),
       ],
-    }],
-  }).catch(console.log.bind(console))
+    }
+  })).catch(console.log.bind(console))
 }

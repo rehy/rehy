@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "dependencies": {
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "redux": "^3.3.1",
+    "rehy": "0.0.2"
+  },
+  "devDependencies": {
+    "babel-register": "^6.6.5"
+  }
+}

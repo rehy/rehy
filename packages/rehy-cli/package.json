@@ -2,26 +2,33 @@
   "name": "rehy-cli",
   "version": "0.0.1",
   "description": "Command line interface for rehy",
+  "scripts": {
+    "prepublish": "gulp build"
+  },
   "dependencies": {
     "chalk": "^1.1.1",
     "cordova": "^6.0.0",
     "cpy": "^4.0.0",
     "debug": "^2.2.0",
+    "empty-dir": "^0.2.0",
     "exit": "^0.1.2",
     "interpret": "^1.0.0",
     "liftoff": "^2.2.0",
+    "minimatch": "^3.0.0",
     "mkdirp": "^0.5.1",
     "mz": "^2.3.1",
-    "nunjucks": "^2.3.0",
+    "nunjucks": "^2.4.0",
     "path-exists": "^2.1.0",
     "rehy-webpack-config": "0.0.1",
     "tildify": "^1.1.2",
     "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1",
     "yargs": "^4.2.0"
   },
-  "repository": "ratson/rehy-cli",
+  "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-cli",
   "author": "Ratson",
   "license": "MIT",
+  "preferGlobal": true,
   "bin": {
     "rehy": "bin/rehy.js"
   },

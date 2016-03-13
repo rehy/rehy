@@ -1,9 +1,13 @@
 import path from 'path'
 
+import _ from 'lodash'
 import chalk from 'chalk'
+import cpy from 'cpy'
+import emptyDir from 'empty-dir'
 import exit from 'exit'
 import interpret from 'interpret'
 import Liftoff from 'liftoff'
+import minimatch from 'minimatch'
 import nunjucks from 'nunjucks'
 import tildify from 'tildify'
 import yargs from 'yargs'
@@ -12,6 +16,7 @@ import {version as cliVersion} from '../package.json'
 
 import cliOptions from './cli-options'
 import cordovaBulid from './cordova'
+import * as commands from './commands'
 
 // Set env var for ORIGINAL cwd
 // before anything touches it
@@ -30,9 +35,13 @@ cli.on('require', (name) => {
 
 const usage =
   '\n' + chalk.bold('Usage:') +
-  ' rehy ' + chalk.blue('[options]') + ' tasks'
+  ' rehy <command> ' + chalk.blue('[options]')
 
-const parser = yargs.usage(usage, cliOptions)
+const parser = yargs
+  .usage(usage, cliOptions)
+  .command('new', 'Create project')
+  .command('dev', 'Development server')
+  .help()
 const opts = parser.argv
 
 const handleArguments = (env) => {
@@ -59,10 +68,31 @@ const handleArguments = (env) => {
   const exported = require(env.configPath)
   log.info('Using rehyfile', chalk.magenta(tildify(env.configPath)))
 
-  cordovaBulid(exported)
+  const subCommand = _.get(opts._, [0], 'build')
+  commands[subCommand]({
+    config: exported,
+  })
+}
+
+const emptyDirFilter = (filepath) => {
+  return !minimatch(filepath, '.git')
 }
 
 export default () => {
+  if (opts.help) {
+    parser.showHelp()
+    return
+  }
+  switch (_.first(opts._)) {
+    case 'new':
+      if (emptyDir.sync(process.cwd(), emptyDirFilter)) {
+        cpy([path.join(__dirname, '../project-template/*')], process.cwd())
+      } else {
+        log.info('Directory is not empty')
+      }
+      return
+    default:
+  }
   cli.launch({
     configPath: opts.rehyfile,
   }, handleArguments)
