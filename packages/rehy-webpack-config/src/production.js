@@ -3,20 +3,10 @@ import path from 'path'
 import _ from 'lodash'
 
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import StatsPlugin from 'stats-webpack-plugin'
 import webpack from 'webpack'
 import WebpackConfig from 'webpack-config'
 
 import config from './base'
-
-export const htmlMinifyConfig = {
-  collapseWhitespace: true,
-  minifyCSS: true,
-  minifyJS: true,
-  removeComments: true,
-  useShortDoctype: true,
-}
 
 export default config.merge((config) => {
   const cssLoader = _.find(config.module.loaders, ['id', 'css'])
@@ -66,12 +56,5 @@ export default config.merge((config) => {
         comments: false,
       },
     }),
-
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      minify: htmlMinifyConfig,
-      inject: true,
-    }),
-    new StatsPlugin('stats.json'),
   ],
 })

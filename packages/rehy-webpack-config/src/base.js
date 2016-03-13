@@ -1,6 +1,6 @@
+import assert from 'assert'
 import path from 'path'
 
-import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WebpackConfig from 'webpack-config'
 
 const rootPath = (...args) => path.resolve(__dirname, '..', ...args)
@@ -16,10 +16,13 @@ const stats = {
   version: false,
 }
 
+const publicPath = '/'
+
 export default new WebpackConfig().merge({
   output: {
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[hash].js',
+    publicPath,
   },
   module: {
     loaders: [{
@@ -44,10 +47,6 @@ export default new WebpackConfig().merge({
   },
   stats,
   plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      inject: 'body',
-    }),
   ],
   devServer: {
     devtool: 'eval',
@@ -56,13 +55,8 @@ export default new WebpackConfig().merge({
     noInfo: false,
     quiet: false,
     stats,
-  },
-}).merge((config) => {
-  return {
-    devServer: {
-      historyApiFallback: {
-        index: config.output.publicPath,
-      },
+    historyApiFallback: {
+      index: publicPath,
     },
-  }
+  },
 })
