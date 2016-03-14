@@ -10,7 +10,7 @@ import {renderTemplate} from '../utils'
 import cordovaBuildPlugin from './webpack-plugin'
 
 const renderConfigXML = ({templatePath, templateContext}) => {
-  const templateFilename = templatePath || path.join(__dirname, 'config.xml.nunjucks')
+  const templateFilename = templatePath || 'config.xml.nunjucks'
   return renderTemplate(templateFilename, templateContext)
 }
 

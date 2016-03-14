@@ -3,7 +3,11 @@ import StatsPlugin from 'stats-webpack-plugin'
 
 import webpackConfigBase from 'rehy-webpack-config'
 
-import {templateContent} from './common'
+import {renderTemplate} from '../../utils'
+
+const templateContent = () => {
+  return renderTemplate('cordova.nunjucks')
+}
 
 const htmlMinifyConfig = {
   collapseWhitespace: true,
