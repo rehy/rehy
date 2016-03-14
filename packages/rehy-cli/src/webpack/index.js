@@ -8,14 +8,8 @@ import WebpackDevServer from 'webpack-dev-server'
 
 import webpackConfigBase from 'rehy-webpack-config'
 
-const webpackOutputPath = '.rehy/local/webpack-output'
-
-export const config = webpackConfigBase
-  .merge({
-    output: {
-      path: path.join(process.cwd(), webpackOutputPath),
-    },
-  })
+export {default as config} from './config'
+export {default as runDevServer} from './dev-server'
 
 export const build = (config = config) => {
   const compiler = webpack(config)
@@ -33,12 +27,4 @@ export const build = (config = config) => {
       }
     })
   })
-}
-
-export const runDevServer = (config = config) => {
-  assert(!_.isEmpty(config.devServer))
-  assert(pathExists.sync(config.output.path))
-  const compiler = webpack(config)
-  const server = new WebpackDevServer(compiler, config.devServer)
-  server.listen(8080, 'localhost')
 }

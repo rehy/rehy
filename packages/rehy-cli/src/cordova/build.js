@@ -3,16 +3,15 @@ import path from 'path'
 
 import _ from 'lodash'
 import mkdirp from 'mkdirp'
-import nunjucks from 'nunjucks'
 
 import * as webpack from '../webpack'
+import {renderTemplate} from '../utils'
 
 import cordovaBuildPlugin from './webpack-plugin'
 
 const renderConfigXML = ({templatePath, templateContext}) => {
   const templateFilename = templatePath || path.join(__dirname, 'config.xml.nunjucks')
-  const templateString = fs.readFileSync(templateFilename, 'utf8')
-  return nunjucks.renderString(templateString, templateContext)
+  return renderTemplate(templateFilename, templateContext)
 }
 
 const prepareBuildFolder = ({buildDir, configXML = {}}) => {
@@ -26,7 +25,8 @@ export default ({webpackConfig}) => {
   const buildDir = path.join(process.cwd(), '.rehy/local/cordova-build')
   prepareBuildFolder({buildDir})
 
-  webpack.build(webpack.config.merge((config) => {
+  webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
+    delete config.output.publicPath  // eslint-disable-line
     return {
       plugins: [
         cordovaBuildPlugin({
