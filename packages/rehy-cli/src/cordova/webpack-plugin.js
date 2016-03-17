@@ -17,7 +17,7 @@ function createPlugin({cordovaDir, sourcePath}) {
         cwd: sourcePath,
       })
 
-      if (!await pathExists(rootPath('platforms'))) {
+      if (!await pathExists(path.join(cordovaDir, 'platforms'))) {
         await spawn('cordova', ['prepare'], {
           stdio: 'inherit',
           cwd: cordovaDir,
