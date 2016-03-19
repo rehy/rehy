@@ -1,6 +1,6 @@
 import path from 'path'
 
-import {spawn} from 'mz/child_process'
+import {spawn} from 'child-process-promise'
 import cpy from 'cpy'
 import pathExists from 'path-exists'
 

@@ -21,9 +21,17 @@ const prepareBuildFolder = ({buildDir, configXML = {}}) => {
   fs.writeFileSync(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default ({webpackConfig}) => {
+export default ({app, cordovaConfig, webpackConfig}) => {
   const buildDir = path.join(process.cwd(), '.rehy/local/cordova-build')
-  prepareBuildFolder({buildDir})
+  prepareBuildFolder({
+    buildDir,
+    configXML: {
+      templateContext: {
+        ...app,
+        ...cordovaConfig,
+      },
+    },
+  })
 
   webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
     delete config.output.publicPath  // eslint-disable-line
