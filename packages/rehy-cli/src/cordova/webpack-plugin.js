@@ -17,17 +17,19 @@ function createPlugin({cordovaDir, sourcePath}) {
         cwd: sourcePath,
       })
 
-      if (!await pathExists(path.join(cordovaDir, 'platforms'))) {
-        await spawn('cordova', ['prepare'], {
-          stdio: 'inherit',
-          cwd: cordovaDir,
-        })
-      }
-
-      await spawn('cordova', args, {
+      const spawnOpts = {
         stdio: 'inherit',
         cwd: cordovaDir,
-      })
+        env: {
+          ...process.env,
+          PATH: process.env.PATH + ':' + path.join(require.resolve('cordova'), '../../.bin')
+        },
+      }
+      if (!await pathExists(path.join(cordovaDir, 'platforms'))) {
+        await spawn('cordova', ['prepare'], spawnOpts)
+      }
+
+      await spawn('cordova', args, spawnOpts)
     })
   }
 }

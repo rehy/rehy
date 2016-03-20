@@ -1,8 +1,10 @@
-import fs from 'fs'
 import path from 'path'
 
 import _ from 'lodash'
-import mkdirp from 'mkdirp'
+import cpy from 'cpy'
+import fs from 'mz/fs'
+import mkdirp from 'mkdirp-then'
+import shell from 'shelljs'
 
 import * as webpack from '../webpack'
 import {renderTemplate} from '../utils'
@@ -14,17 +16,27 @@ const renderConfigXML = ({templatePath, templateContext}) => {
   return renderTemplate(templateFilename, templateContext)
 }
 
-const prepareBuildFolder = ({buildDir, configXML = {}}) => {
-  mkdirp.sync(path.join(buildDir, 'www'))
+const prepareBuildFolder = async (opts) => {
+  const {buildDir, rootDir, configXML = {}} = opts
+  await mkdirp(path.join(buildDir, 'www'))
+
+  await cpy([
+    'icon.png',
+    'splash.png',
+  ], buildDir, { cwd: rootDir })
+
+  shell.cp('-R', path.join(__dirname, 'hooks'), buildDir)
 
   const xmlContent = renderConfigXML(configXML)
-  fs.writeFileSync(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
+  await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default ({app, cordovaConfig, webpackConfig}) => {
-  const buildDir = path.join(process.cwd(), '.rehy/local/cordova-build')
-  prepareBuildFolder({
+export default async ({app, cordovaConfig, webpackConfig}) => {
+  const rootDir = process.cwd()
+  const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
+  await prepareBuildFolder({
     buildDir,
+    rootDir,
     configXML: {
       templateContext: {
         ...app,
@@ -33,7 +45,7 @@ export default ({app, cordovaConfig, webpackConfig}) => {
     },
   })
 
-  webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
+  await webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
     delete config.output.publicPath  // eslint-disable-line
     return {
       plugins: [
@@ -43,5 +55,5 @@ export default ({app, cordovaConfig, webpackConfig}) => {
         }),
       ],
     }
-  })).catch(console.log.bind(console))
+  }))
 }

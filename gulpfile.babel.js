@@ -21,9 +21,12 @@ const paths = {
       `${packageRoot}/src/**/*.jsx`,
     ]
   })),
-  statics: _.map(glob.sync('packages/*'), (packageRoot) => {
-    return `${packageRoot}/src/**/*.nunjucks`
-  }),
+  statics: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => {
+    return [
+      `${packageRoot}/src/**/*.nunjucks`,
+      `${packageRoot}/src/**/*.sh`,
+    ]
+  })),
 }
 
 const resolvePackageRoot = (file) => {
