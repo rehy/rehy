@@ -9,12 +9,9 @@ import WebpackConfig from 'webpack-config'
 import config from './base'
 
 export default config.merge((config) => {
-  const cssLoader = _.find(config.module.loaders, ['id', 'css'])
-  return {
-    cssLoader: {
-      loader: ExtractTextPlugin.extract('style', 'css'),
-    },
-  }
+  const cssLoader = _.find(config.module.loaders, (x) => x.id === 'css')
+  cssLoader.loader = ExtractTextPlugin.extract('style', 'css')
+  return config
 }).merge({
   devtool: 'hidden-source-map',
   module: {
@@ -30,7 +27,8 @@ export default config.merge((config) => {
       },
     }),
 
-    new webpack.optimize.DedupePlugin(),
+    // TODO https://github.com/webpack/webpack/issues/1082
+    // new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.UglifyJsPlugin({
