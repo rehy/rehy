@@ -6,10 +6,12 @@ import fs from 'mz/fs'
 import mkdirp from 'mkdirp-then'
 import shell from 'shelljs'
 
+import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
+
 import * as webpack from '../webpack'
 import {renderTemplate} from '../utils'
 
-import cordovaBuildPlugin from './webpack-plugin'
+import CordovaBuildPlugin from './webpack-plugin'
 
 const renderConfigXML = ({templatePath, templateContext}) => {
   const templateFilename = templatePath || 'config.xml.nunjucks'
@@ -47,11 +49,13 @@ export default async ({app, cordovaConfig, webpackConfig}) => {
 
   await webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
     delete config.output.publicPath  // eslint-disable-line
+    const sourcePath = config.output.path
     return {
       plugins: [
-        cordovaBuildPlugin({
+        new WebpackCleanupPlugin(),
+        new CordovaBuildPlugin({
           cordovaDir: buildDir,
-          sourcePath: config.output.path,
+          sourcePath,
         }),
       ],
     }
