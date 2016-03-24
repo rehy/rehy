@@ -10,10 +10,10 @@
     "babel-loader": "^6.2.4",
     "css-loader": "^0.23.1",
     "json-loader": "^0.5.4",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.1"
   },
   "dependencies": {
-    "babel-core": "^6.7.2",
+    "babel-core": "^6.7.4",
     "debug": "^2.2.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "webpack": "^1.12.14",
@@ -23,7 +23,7 @@
     "babel-loader": "^6.2.4",
     "css-loader": "^0.23.1",
     "json-loader": "^0.5.4",
-    "style-loader": "^0.13.0"
+    "style-loader": "^0.13.1"
   },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-webpack-config",
   "author": "Ratson",

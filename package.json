@@ -25,7 +25,7 @@
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.5.2",
     "lodash": "^4.6.1",
-    "npm-check-updates": "^2.5.8"
+    "npm-check-updates": "^2.6.1"
   },
   "babel": {
     "presets": [
