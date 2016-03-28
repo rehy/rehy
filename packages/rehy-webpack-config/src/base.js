@@ -20,6 +20,7 @@ const publicPath = '/'
 
 export default new WebpackConfig().merge({
   output: {
+    path: 'dist',
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[hash].js',
     publicPath,
@@ -46,7 +47,7 @@ export default new WebpackConfig().merge({
     modulesDirectories: ['node_modules'],
   },
   resolveLoader: {
-    root: rootPath('node_modules'),
+    root: [rootPath('node_modules')],
   },
   stats,
   plugins: [
