@@ -94,6 +94,10 @@ gulp.task('build', () => {
     plugins: [
       'transform-export-extensions',
       'transform-runtime',
+      'lodash',
+      'transform-flow-strip-types',
+      'transform-react-remove-prop-types',
+      'unassert',
     ],
   })))
   .pipe(gulp.dest(resolvePackageRoot))
