@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 import cordovaBulid from '../cordova'
 
 export default ({config}) => {

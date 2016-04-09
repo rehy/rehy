@@ -6,6 +6,7 @@ import fs from 'mz/fs'
 import mkdirp from 'mkdirp-then'
 import shell from 'shelljs'
 
+import {DefinePlugin} from 'webpack'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 
 import * as webpack from '../webpack'
@@ -34,6 +35,23 @@ const prepareBuildFolder = async (opts) => {
 }
 
 export default async ({app, cordovaConfig, webpackConfig}) => {
+  const googleAnalyticsId = _.get(app, 'googleAnalyticsId')
+  if (googleAnalyticsId === 'UA-xxxxxxxx-x') {
+    delete app.googleAnalyticsId
+  } else if (googleAnalyticsId) {
+    cordovaConfig.plugins.push({
+      name: 'cordova-plugin-ga',
+      spec: '~1.3.0',
+    })
+
+    _.defaults(webpackConfig, {plugins: []})
+    webpackConfig.plugins.push(new DefinePlugin({
+      'process.env': {
+        GOOGLE_ANALYTICS_ID: JSON.stringify(googleAnalyticsId),
+      },
+    }))
+  }
+
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   await prepareBuildFolder({
