@@ -25,7 +25,7 @@ export default async (opts) => {
   appendDebugPanel({appNode, store})
   initCordova({store})
 
-  if (window.GA && process.env.GOOGLE_ANALYTICS_ID) {
+  if (process.env.GOOGLE_ANALYTICS_ID && process.env.NODE_ENV === 'production' && window.GA) {
     GA.startTrackerWithId(process.env.GOOGLE_ANALYTICS_ID)
     enhancedHistory.listen(location => {
       GA.trackView(location.pathname)
