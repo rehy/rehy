@@ -30,11 +30,5 @@
     "gulp-shell": "^0.5.2",
     "lodash": "^4.10.0",
     "npm-check-updates": "^2.6.1"
-  },
-  "babel": {
-    "presets": [
-      "es2015-node5",
-      "stage-0"
-    ]
   }
 }
