@@ -1,6 +1,6 @@
 {
   "name": "rehy-cli",
-  "version": "0.0.5",
+  "version": "0.0.7",
   "description": "Command line interface for rehy",
   "scripts": {
     "prepublish": "gulp build"
@@ -26,7 +26,7 @@
     "mz": "^2.4.0",
     "nunjucks": "^2.4.2",
     "path-exists": "^2.1.0",
-    "rehy-webpack-config": "0.0.5",
+    "rehy-webpack-config": "0.0.6",
     "shelljs": "^0.6.0",
     "stats-webpack-plugin": "^0.3.1",
     "tildify": "^1.2.0",
@@ -43,6 +43,7 @@
     "rehy": "bin/rehy.js"
   },
   "files": [
+    "bin",
     "dist",
     "lib",
     "es",
