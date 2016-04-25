@@ -15,4 +15,27 @@ export const cordovaConfig = {
 }
 
 export const webpackConfig = {
+  entry: {
+    app: './main.js',
+  },
+  node: {
+    fs: 'empty',
+  },
+  babel: {
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react",
+    ],
+    plugins: [
+      'transform-runtime',
+    ],
+    env: {
+      production: {
+        plugins: [
+          'lodash',
+        ],
+      },
+    }
+  },
 }

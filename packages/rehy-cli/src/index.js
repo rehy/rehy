@@ -86,7 +86,10 @@ export default () => {
   switch (_.first(opts._)) {
     case 'new':
       if (emptyDir.sync(process.cwd(), emptyDirFilter)) {
-        cpy([path.join(__dirname, '../project-template/*')], process.cwd())
+        cpy(['.*', '**'], process.cwd(), {
+          cwd: path.join(__dirname, '../project-template'),
+          parents: true,
+        })
       } else {
         log.info('Directory is not empty')
       }

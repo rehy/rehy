@@ -28,7 +28,7 @@
     "nunjucks": "^2.4.2",
     "path-exists": "^2.1.0",
     "rehy-webpack-config": "0.0.6",
-    "shelljs": "^0.6.0",
+    "shelljs": "^0.7.0",
     "stats-webpack-plugin": "^0.3.1",
     "tildify": "^1.2.0",
     "webpack": "^1.13.0",
