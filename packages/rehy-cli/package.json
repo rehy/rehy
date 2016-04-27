@@ -48,6 +48,7 @@
     "dist",
     "lib",
     "es",
-    "src"
+    "src",
+    "project-template"
   ]
 }
