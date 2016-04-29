@@ -1,6 +1,6 @@
 {
   "name": "rehy-cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Command line interface for rehy",
   "scripts": {
     "prepublish": "gulp build"

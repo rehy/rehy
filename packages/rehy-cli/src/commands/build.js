@@ -25,7 +25,7 @@ const extendForGoogleAnalytics = ({app, cordovaConfig, webpackConfig}) => {
 const extendForSplashScreen = ({app, cordovaConfig, webpackConfig}) => {
   cordovaConfig.plugins.push({
     name: 'cordova-plugin-splashscreen',
-    spec: '~3.2.1',
+    spec: '~3.2.2',
   })
 }
 

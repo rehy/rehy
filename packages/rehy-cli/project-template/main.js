@@ -25,5 +25,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  alert(`Unknown Error!\nPlease contact our support.\n${err}`)
+  console.trace('Uncaught error')
+  alert(`Unknown Error!\nPlease contact our support.\n\n${err.stack}`)
 })
