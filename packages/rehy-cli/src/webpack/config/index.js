@@ -7,9 +7,7 @@ import webpackConfigBase from 'rehy-webpack-config'
 const webpackOutputPath = '.rehy/local/webpack-output'
 
 export default validate(webpackConfigBase.extend({
-  [path.resolve(__dirname, './[env].js')]: ({default: config}) => {
-    return config
-  },
+  [path.resolve(__dirname, './[env].js')]: ({ default: config }) => config,
 })
 .merge({
   output: {

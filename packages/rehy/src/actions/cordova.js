@@ -1,8 +1,6 @@
 /* global cordova */
-export const handleDeviceReady = () => {
-  return (dispatch) => {
-    if (navigator.splashscreen) {
-      navigator.splashscreen.hide()
-    }
+export const handleDeviceReady = () => () => {
+  if (navigator.splashscreen) {
+    navigator.splashscreen.hide()
   }
 }

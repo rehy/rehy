@@ -1,5 +1,5 @@
-import {canUseDOM} from 'fbjs/lib/ExecutionEnvironment'
-import {persistState} from 'redux-devtools'
+import { canUseDOM } from 'fbjs/lib/ExecutionEnvironment'
+import { persistState } from 'redux-devtools'
 
 import DevTools from '.'
 
@@ -11,7 +11,7 @@ function getDebugSessionKey() {
   return (matches && matches.length > 0) ? matches[1] : null
 }
 
-export default function() {
+export default function () {
   return [
     DevTools.instrument(),
     persistState(getDebugSessionKey()),

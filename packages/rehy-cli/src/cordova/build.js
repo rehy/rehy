@@ -1,6 +1,5 @@
 import path from 'path'
 
-import _ from 'lodash'
 import cpy from 'cpy'
 import fs from 'mz/fs'
 import mkdirp from 'mkdirp-then'
@@ -9,17 +8,17 @@ import shell from 'shelljs'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 
 import * as webpack from '../webpack'
-import {renderTemplate} from '../utils'
+import { renderTemplate } from '../utils'
 
 import CordovaBuildPlugin from './webpack-plugin'
 
-const renderConfigXML = ({templatePath, templateContext}) => {
+const renderConfigXML = ({ templatePath, templateContext }) => {
   const templateFilename = templatePath || 'config.xml.nunjucks'
   return renderTemplate(templateFilename, templateContext)
 }
 
 const prepareBuildFolder = async (opts) => {
-  const {buildDir, rootDir, configXML = {}} = opts
+  const { buildDir, rootDir, configXML = {} } = opts
   await mkdirp(path.join(buildDir, 'www'))
 
   await cpy([
@@ -33,7 +32,7 @@ const prepareBuildFolder = async (opts) => {
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default async ({app, cordovaConfig, webpackConfig}) => {
+export default async ({ app, cordovaConfig, webpackConfig }) => {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   await prepareBuildFolder({

@@ -1,16 +1,9 @@
-import assert from 'assert'
-import path from 'path'
-
-import _ from 'lodash'
-import pathExists from 'path-exists'
 import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
 
-import webpackConfigBase from 'rehy-webpack-config'
+export { default as config } from './config'
+export { default as runDevServer } from './dev-server'
 
-export {default as config} from './config'
-export {default as runDevServer} from './dev-server'
-
+// eslint-disable-next-line no-use-before-define
 export const build = (config = config) => {
   const compiler = webpack(config)
   return new Promise((resolve, reject) => {

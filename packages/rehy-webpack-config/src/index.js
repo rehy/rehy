@@ -9,7 +9,5 @@ WebpackConfig.environment.setAll({
 })
 
 export default new WebpackConfig().extend({
-  [path.resolve(__dirname, './[env].js')]: ({default: config}) => {
-    return config
-  },
+  [path.resolve(__dirname, './[env].js')]: ({ default: config }) => config,
 })

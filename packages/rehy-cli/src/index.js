@@ -8,14 +8,12 @@ import exit from 'exit'
 import interpret from 'interpret'
 import Liftoff from 'liftoff'
 import minimatch from 'minimatch'
-import nunjucks from 'nunjucks'
 import tildify from 'tildify'
 import yargs from 'yargs'
 
-import {version as cliVersion} from '../package.json'
+import { version as cliVersion } from '../package.json'
 
 import cliOptions from './cli-options'
-import cordovaBulid from './cordova'
 import * as commands from './commands'
 
 // Set env var for ORIGINAL cwd
@@ -33,9 +31,7 @@ cli.on('require', (name) => {
   log.info('Requiring external module', chalk.magenta(name))
 })
 
-const usage =
-  '\n' + chalk.bold('Usage:') +
-  ' rehy <command> ' + chalk.blue('[options]')
+const usage = `\n${chalk.bold('Usage:')} rehy <command> ${chalk.blue('[options]')}`
 
 const parser = yargs
   .usage(usage, cliOptions)
@@ -65,6 +61,7 @@ const handleArguments = (env) => {
     )
   }
 
+  // eslint-disable-next-line global-require
   const exported = require(env.configPath)
   log.info('Using rehyfile', chalk.magenta(tildify(env.configPath)))
 
@@ -74,9 +71,7 @@ const handleArguments = (env) => {
   })
 }
 
-const emptyDirFilter = (filepath) => {
-  return !minimatch(filepath, '.git')
-}
+const emptyDirFilter = (filepath) => !minimatch(filepath, '.git')
 
 export default () => {
   if (opts.help) {

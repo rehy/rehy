@@ -2,11 +2,9 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 
 import webpackConfigBase from 'rehy-webpack-config'
 
-import {renderTemplate} from '../../utils'
+import { renderTemplate } from '../../utils'
 
-const templateContent = () => {
-  return renderTemplate('dev.nunjucks')
-}
+const templateContent = () => renderTemplate('dev.nunjucks')
 
 export default webpackConfigBase.merge({
   plugins: [
@@ -14,5 +12,5 @@ export default webpackConfigBase.merge({
       templateContent,
       inject: 'body',
     }),
-  ]
+  ],
 })

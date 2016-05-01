@@ -1,14 +1,11 @@
-import path from 'path'
-
 import _ from 'lodash'
 
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import webpack from 'webpack'
-import WebpackConfig from 'webpack-config'
 
-import config from './base'
+import baseConfig from './base'
 
-export default config.merge((config) => {
+export default baseConfig.merge((config) => {
   const cssLoader = _.find(config.module.loaders, (x) => x.id === 'css')
   cssLoader.loader = ExtractTextPlugin.extract('style', 'css')
   return config

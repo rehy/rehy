@@ -1,16 +1,16 @@
 import path from 'path'
 
-import {spawn} from 'child-process-promise'
+import { spawn } from 'child-process-promise'
 import cpy from 'cpy'
 import del from 'del'
 import pathExists from 'path-exists'
 
 function CordovaBuildPlugin(opts) {
-  this._opts = opts
+  this.opts = opts
 }
 
-CordovaBuildPlugin.prototype.apply = function(compiler) {
-  const {cordovaDir, sourcePath} = this._opts
+CordovaBuildPlugin.prototype.apply = function apply(compiler) {
+  const { cordovaDir, sourcePath } = this.opts
 
   const args = process.env.NODE_ENV === 'production' ? ['build', '--release'] : ['build']
   const blacklistPatterns = process.env.NODE_ENV === 'production' ? [

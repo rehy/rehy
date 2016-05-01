@@ -1,12 +1,13 @@
 import _ from 'lodash'
 
-import {DefinePlugin} from 'webpack'
+import { DefinePlugin } from 'webpack'
 
 import cordovaBulid from '../cordova'
 
-const extendForGoogleAnalytics = ({app, cordovaConfig, webpackConfig}) => {
+const extendForGoogleAnalytics = ({ app, cordovaConfig, webpackConfig }) => {
   const googleAnalyticsId = _.get(app, 'googleAnalyticsId')
   if (googleAnalyticsId === 'UA-xxxxxxxx-x') {
+    // eslint-disable-next-line no-param-reassign
     delete app.googleAnalyticsId
   } else if (googleAnalyticsId) {
     cordovaConfig.plugins.push({
@@ -22,16 +23,16 @@ const extendForGoogleAnalytics = ({app, cordovaConfig, webpackConfig}) => {
   }
 }
 
-const extendForSplashScreen = ({app, cordovaConfig, webpackConfig}) => {
+const extendForSplashScreen = ({ cordovaConfig }) => {
   cordovaConfig.plugins.push({
     name: 'cordova-plugin-splashscreen',
     spec: '~3.2.2',
   })
 }
 
-export default ({config}) => {
-  _.defaults(config.cordovaConfig, {plugins: []})
-  _.defaults(config.webpackConfig, {plugins: []})
+export default ({ config }) => {
+  _.defaults(config.cordovaConfig, { plugins: [] })
+  _.defaults(config.webpackConfig, { plugins: [] })
   extendForGoogleAnalytics(config)
   extendForSplashScreen(config)
 

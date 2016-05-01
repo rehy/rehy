@@ -22,10 +22,10 @@ export const webpackConfig = {
     fs: 'empty',
   },
   babel: {
-    "presets": [
-      "es2015",
-      "stage-0",
-      "react",
+    presets: [
+      'es2015',
+      'stage-0',
+      'react',
     ],
     plugins: [
       'transform-runtime',
@@ -36,6 +36,6 @@ export const webpackConfig = {
           'lodash',
         ],
       },
-    }
+    },
   },
 }
