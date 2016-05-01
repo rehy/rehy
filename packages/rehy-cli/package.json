@@ -10,6 +10,7 @@
     "cordova-icon": "^0.7.0",
     "cordova-splash": "^0.7.1",
     "cpy": "^4.0.0",
+    "cpy-cli": "^1.0.0",
     "debug": "^2.2.0",
     "del": "^2.2.0",
     "empty-dir": "^0.2.0",
