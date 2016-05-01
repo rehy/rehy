@@ -45,7 +45,10 @@ gulp.task('install', () => {
 })
 
 gulp.task('ncu', () => {
-  return gulp.src(paths.packageJSONs, {read: false})
+  return gulp.src([
+    ...paths.packageJSONs,
+    'packages/rehy-cli/project-template/package.json',
+  ], {read: false})
     .pipe(shell([
       'ncu -a --packageFile <%= file.path %>',
     ], {
