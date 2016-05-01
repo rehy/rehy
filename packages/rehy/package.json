@@ -1,6 +1,6 @@
 {
   "name": "rehy",
-  "version": "0.0.6",
+  "version": "0.0.10",
   "description": "React + Hybrid App",
   "main": "lib/index.js",
   "scripts": {},
