@@ -45,14 +45,14 @@ const parser = yargs
 const opts = parser.argv
 
 const handleArguments = (env) => {
-  if (!env.configPath) {
-    log.error(chalk.red('No rehyfile found'))
-    exit(1)
-  }
-
   if (opts.version) {
     log.info('CLI version', cliVersion)
     exit(0)
+  }
+
+  if (!env.configPath) {
+    log.error(chalk.red('No rehyfile found'))
+    exit(1)
   }
 
   // Chdir before requiring gulpfile to make sure
