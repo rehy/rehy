@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "gulp install",
     "lint": "eslint .",
-    "prepublish": "npm run lint && gulp clean && gulp build",
+    "prepublish": "gulp prepublish",
     "publish": "lerna publish"
   },
   "devDependencies": {
@@ -39,6 +39,7 @@
     "gulp-shell": "^0.5.2",
     "lerna": "^1.1.2",
     "lodash": "^4.11.1",
-    "npm-check-updates": "^2.6.3"
+    "npm-check-updates": "^2.6.3",
+    "run-sequence": "^1.1.5"
   }
 }

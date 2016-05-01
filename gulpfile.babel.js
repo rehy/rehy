@@ -9,6 +9,7 @@ import gulp from 'gulp'
 import gulpif from 'gulp-if'
 import install from 'gulp-install'
 import plumber from 'gulp-plumber'
+import runSequence from 'run-sequence'
 import shell from 'gulp-shell'
 
 const paths = {
@@ -77,6 +78,20 @@ gulp.task('build', () => gulp.src([
     ],
   })))
   .pipe(gulp.dest(resolvePackageRoot)))
+
+gulp.task('lint', shell.task(['npm run lint'], {
+  env: {
+    FORCE_COLOR: '1',
+  },
+}))
+
+gulp.task('prepublish', (callback) => {
+  runSequence(
+    'clean',
+    ['build', 'lint'],
+    callback,
+  )
+})
 
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['build'])
