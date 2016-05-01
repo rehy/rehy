@@ -9,6 +9,7 @@
     "intl": "^1.1.0",
     "lodash": "^4.11.1",
     "react-intl": "^2.1.2",
+    "react-intl-redux": "^0.0.7",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",

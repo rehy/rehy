@@ -1,14 +1,11 @@
-import {IntlProvider} from 'react-intl'
-import {Provider as ReduxProvider} from 'react-redux'
+import {Provider as IntlProvider} from 'react-intl-redux'
 import React, {PropTypes} from 'react'
 
 const Provider = ({children, defaultLocale, locale, store}) => {
   return (
-    <ReduxProvider store={store}>
-      <IntlProvider locale={locale} defaultLocale={defaultLocale}>
-        {children}
-      </IntlProvider>
-    </ReduxProvider>
+    <IntlProvider store={store} locale={locale} defaultLocale={defaultLocale}>
+      {children}
+    </IntlProvider>
   )
 }
 
