@@ -47,7 +47,10 @@ export default new WebpackConfig().merge({
     modulesDirectories: ['node_modules'],
   },
   resolveLoader: {
-    root: [rootPath('node_modules')],
+    root: [
+      path.join(require.resolve('babel-loader'), '../..'),
+      rootPath('node_modules'),
+    ],
   },
   stats,
   plugins: [

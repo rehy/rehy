@@ -22,6 +22,8 @@ Quick Start
 Similar Projects
 ----------------
 
+- `ionic <https://github.com/driftyco/ionic>`_
+- `meteor <https://github.com/meteor/meteor>`_
 - `react-heatpack <https://github.com/insin/react-heatpack>`_
 - `redux-bootstrap <https://github.com/redux-bootstrap/redux-bootstrap>`_
 - `redux-cli <https://github.com/SpencerCDixon/redux-cli>`_
