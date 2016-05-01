@@ -2,9 +2,7 @@
   "name": "rehy-cli",
   "version": "0.0.9",
   "description": "Command line interface for rehy",
-  "scripts": {
-    "prepublish": "gulp build"
-  },
+  "scripts": {},
   "dependencies": {
     "chalk": "^1.1.3",
     "child-process-promise": "^2.0.1",

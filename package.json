@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "postinstall": "gulp install",
-    "publish": "gulp publish"
+    "prepublish": "gulp clean && gulp build",
+    "publish": "lerna publish"
   },
   "devDependencies": {
     "babel-plugin-lodash": "^2.3.0",
@@ -28,6 +29,7 @@
     "gulp-install": "^0.6.0",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.5.2",
+    "lerna": "^1.1.2",
     "lodash": "^4.11.1",
     "npm-check-updates": "^2.6.3"
   }

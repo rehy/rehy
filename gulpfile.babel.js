@@ -12,7 +12,6 @@ import plumber from 'gulp-plumber'
 import shell from 'gulp-shell'
 
 const paths = {
-  packages: 'packages/*',
   libs: 'packages/*/lib',
   packageJSONs: ['package.json', 'packages/*/package.json'],
   scripts: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => {
@@ -49,17 +48,6 @@ gulp.task('ncu', () => {
   return gulp.src(paths.packageJSONs, {read: false})
     .pipe(shell([
       'ncu -a --packageFile <%= file.path %>',
-    ], {
-      env: {
-        FORCE_COLOR: '1',
-      },
-    }))
-})
-
-gulp.task('publish', ['build'], () => {
-  return gulp.src(paths.packages, {read: false})
-    .pipe(shell([
-      'cd <%= file.path %>; npm publish',
     ], {
       env: {
         FORCE_COLOR: '1',

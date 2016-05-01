@@ -3,14 +3,12 @@
   "version": "0.0.6",
   "description": "React + Hybrid App",
   "main": "lib/index.js",
-  "scripts": {
-    "prepublish": "gulp build"
-  },
+  "scripts": {},
   "dependencies": {
     "fbjs": "^0.8.1",
     "intl": "^1.1.0",
     "lodash": "^4.11.1",
-    "react-intl": "^2.1.1",
+    "react-intl": "^2.1.2",
     "react-redux": "^4.4.5",
     "react-router": "^2.4.0",
     "react-router-redux": "^4.0.4",
@@ -22,8 +20,8 @@
   },
   "devDependencies": {
     "babel-preset-stage-0": "^6.5.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
     "redux": "^3.5.2"
   },
   "repository": "rehy/rehy",
