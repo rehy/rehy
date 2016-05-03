@@ -46,8 +46,10 @@ export default async ({ app, cordovaConfig, webpackConfig }) => {
     },
   })
 
+  const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')
   await webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
-    delete config.output.publicPath  // eslint-disable-line
+    // eslint-disable-next-line no-param-reassign
+    delete config.output.publicPath
     const sourcePath = config.output.path
     return {
       plugins: [
@@ -57,6 +59,13 @@ export default async ({ app, cordovaConfig, webpackConfig }) => {
           sourcePath,
         }),
       ],
+      babel: {
+        plugins: [
+          [require.resolve('babel-plugin-react-intl'), {
+            messagesDir,
+          }],
+        ],
+      },
     }
   }))
 }
