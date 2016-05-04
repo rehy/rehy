@@ -1,7 +1,9 @@
 import path from 'path'
 
+import _ from 'lodash'
 import cpy from 'cpy'
 import fs from 'mz/fs'
+import manageTranslations from 'react-intl-translations-manager'
 import mkdirp from 'mkdirp-then'
 import shell from 'shelljs'
 
@@ -32,7 +34,7 @@ const prepareBuildFolder = async (opts) => {
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default async ({ app, cordovaConfig, webpackConfig }) => {
+export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   await prepareBuildFolder({
@@ -54,6 +56,18 @@ export default async ({ app, cordovaConfig, webpackConfig }) => {
     return {
       plugins: [
         new WebpackCleanupPlugin(),
+        function intlPlugin() {
+          if (_.isEmpty(intlConfig)) {
+            return
+          }
+          this.plugin('done', () => {
+            manageTranslations({
+              translationsDirectory: 'messages/',
+              ...intlConfig,
+              messagesDirectory: messagesDir,
+            })
+          })
+        },
         new CordovaBuildPlugin({
           cordovaDir: buildDir,
           sourcePath,

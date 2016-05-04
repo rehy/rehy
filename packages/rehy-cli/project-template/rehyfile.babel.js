@@ -8,6 +8,10 @@ export const app = {
   googleAnalyticsId: 'UA-xxxxxxxx-x',
 }
 
+export const intlConfig = {
+  languages: ['en'],
+}
+
 export const cordovaConfig = {
   id: 'com.example',
   version: '0.0.1',
