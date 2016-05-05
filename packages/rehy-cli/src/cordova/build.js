@@ -20,7 +20,8 @@ const renderConfigXML = ({ templatePath, templateContext }) => {
 }
 
 const prepareBuildFolder = async (opts) => {
-  const { buildDir, rootDir, configXML = {} } = opts
+  const { buildDir, messagesDir, rootDir, configXML = {} } = opts
+  await mkdirp(messagesDir)
   await mkdirp(path.join(buildDir, 'www'))
 
   await cpy([
@@ -37,8 +38,10 @@ const prepareBuildFolder = async (opts) => {
 export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
+  const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')
   await prepareBuildFolder({
     buildDir,
+    messagesDir,
     rootDir,
     configXML: {
       templateContext: {
@@ -48,7 +51,6 @@ export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
     },
   })
 
-  const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')
   await webpack.build(webpack.config.merge(webpackConfig).merge((config) => {
     // eslint-disable-next-line no-param-reassign
     delete config.output.publicPath
@@ -56,10 +58,19 @@ export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
     return {
       plugins: [
         new WebpackCleanupPlugin(),
+        new CordovaBuildPlugin({
+          cordovaDir: buildDir,
+          sourcePath,
+        }),
+      ],
+    }
+  }).merge(() => {
+    if (_.isEmpty(intlConfig)) {
+      return {}
+    }
+    return {
+      plugins: [
         function intlPlugin() {
-          if (_.isEmpty(intlConfig)) {
-            return
-          }
           this.plugin('done', () => {
             manageTranslations({
               translationsDirectory: 'messages/',
@@ -68,14 +79,10 @@ export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
             })
           })
         },
-        new CordovaBuildPlugin({
-          cordovaDir: buildDir,
-          sourcePath,
-        }),
       ],
       babel: {
         plugins: [
-          [require.resolve('babel-plugin-react-intl'), {
+          ['react-intl', {
             messagesDir,
           }],
         ],
