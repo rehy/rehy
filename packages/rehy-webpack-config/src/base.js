@@ -25,21 +25,30 @@ export default new WebpackConfig().merge({
     publicPath,
   },
   module: {
-    loaders: [{
-      id: 'js',
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel?cacheDirectory',
-    }, {
-      id: 'css',
-      test: /\.css$/,
-      loader: 'style!css',
-    }, {
-      id: 'json',
-      test: /\.json$/,
-      exclude: /node_modules/,
-      loader: 'json',
-    }],
+    loaders: [
+      {
+        id: 'js',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'babel?cacheDirectory',
+      }, {
+        id: 'css',
+        test: /\.css$/,
+        loader: 'style!css',
+      }, {
+        id: 'json',
+        test: /\.json$/,
+        exclude: /node_modules/,
+        loader: 'json',
+      },
+      {
+        test: /\.(gif|png)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 10240,
+        },
+      },
+    ],
   },
   resolve: {
     extensions: ['', '.js', '.json', '.jsx'],
