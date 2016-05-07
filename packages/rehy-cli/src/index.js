@@ -6,6 +6,7 @@ import cpy from 'cpy'
 import emptyDir from 'empty-dir'
 import exit from 'exit'
 import interpret from 'interpret'
+import Joi from 'joi'
 import Liftoff from 'liftoff'
 import minimatch from 'minimatch'
 import tildify from 'tildify'
@@ -40,6 +41,30 @@ const parser = yargs
   .help()
 const opts = parser.argv
 
+const schema = Joi.object().keys({
+  app: Joi.object().keys({
+    name: Joi.string().required(),
+    description: Joi.string().required(),
+    author: Joi.object().keys({
+      email: Joi.string().required(),
+      url: Joi.string().required(),
+    }),
+    googleAnalyticsId: Joi.string(),
+  }),
+  cordovaConfig: Joi.object().keys({
+    id: Joi.string().required(),
+    version: Joi.string().required(),
+    plugins: Joi.array().items(Joi.object().keys({
+      name: Joi.string().required(),
+      spec: Joi.string().required(),
+    })),
+  }),
+  intlConfig: Joi.object().keys({
+    languages: Joi.array(),
+  }),
+  webpackConfig: Joi.object(),
+})
+
 const handleArguments = (env) => {
   if (opts.version) {
     log.info('CLI version', cliVersion)
@@ -64,6 +89,12 @@ const handleArguments = (env) => {
   // eslint-disable-next-line global-require
   const exported = require(env.configPath)
   log.info('Using rehyfile', chalk.magenta(tildify(env.configPath)))
+
+  const result = Joi.validate(exported, schema)
+  if (result.error) {
+    log.error(result.error)
+    process.exit(-1)
+  }
 
   const subCommand = _.get(opts._, [0], 'build')
   commands[subCommand]({
