@@ -7,7 +7,14 @@ import webpackConfigBase from 'rehy-webpack-config'
 
 const webpackOutputPath = '.rehy/local/webpack-output'
 
-export default validate(webpackConfigBase.extend({
+const validateConfig = (config) => {
+  if (process.env.WEBPACK_VALIDATE_SKIP) {
+    return config
+  }
+  return validate(config)
+}
+
+export default validateConfig(webpackConfigBase.extend({
   [path.resolve(__dirname, './[env].js')]: ({ default: config }) => {
     // eslint-disable-next-line no-param-reassign
     config.module.loaders = config.module.loaders.map((loader) => _.omit(loader, 'id'))
