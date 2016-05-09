@@ -2,7 +2,7 @@
   "name": "eslint-config-rehy",
   "version": "0.0.13",
   "description": "ESLint configuration for rehy",
-  "main": "index.js",
+  "main": "eslintrc.yml",
   "scripts": {},
   "dependencies": {
     "babel-eslint": "^6.0.4",

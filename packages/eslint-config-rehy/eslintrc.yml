@@ -1,0 +1,10 @@
+extends:
+  - airbnb
+parser: babel-eslint
+plugins:
+  - babel
+rules:
+  arrow-body-style: off
+  import/no-mutable-exports: off  # cause "TypeError: Cannot read property 'name' of undefined"
+  react/prop-types: off
+  semi: ["error", "never"]
