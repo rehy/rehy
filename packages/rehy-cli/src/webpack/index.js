@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 
-export { default as config } from './config'
-export { default as runDevServer } from './dev-server'
+export config from './config'
+export runDevServer from './dev-server'
 
 // eslint-disable-next-line no-use-before-define
 export const build = (config = config) => {

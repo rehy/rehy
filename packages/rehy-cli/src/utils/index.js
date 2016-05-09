@@ -1,1 +1,1 @@
-export { default as renderTemplate } from './render-template'
+export renderTemplate from './render-template'

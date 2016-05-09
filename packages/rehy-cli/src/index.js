@@ -109,7 +109,7 @@ export default () => {
     parser.showHelp()
     return
   }
-  switch (_.first(opts._)) {
+  switch (_.head(opts._)) {
     case 'new':
       if (emptyDir.sync(process.cwd(), emptyDirFilter)) {
         cpy(['.*', '**'], process.cwd(), {

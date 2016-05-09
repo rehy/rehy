@@ -22,8 +22,10 @@ Quick Start
 Similar Projects
 ----------------
 
+- `hops <https://github.com/xing/hops>`_
 - `ionic <https://github.com/driftyco/ionic>`_
 - `meteor <https://github.com/meteor/meteor>`_
 - `react-heatpack <https://github.com/insin/react-heatpack>`_
 - `redux-bootstrap <https://github.com/redux-bootstrap/redux-bootstrap>`_
 - `redux-cli <https://github.com/SpencerCDixon/redux-cli>`_
+- `tamia <https://github.com/tamiadev/tamia>`_
