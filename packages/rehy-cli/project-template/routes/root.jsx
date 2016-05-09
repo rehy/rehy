@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Root = ({children}) => {
+const Root = ({ children }) => {
   return (
     <div>{children}</div>
   )

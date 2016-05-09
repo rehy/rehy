@@ -1,14 +1,10 @@
-import {connect} from 'react-redux'
 import React from 'react'
 
 const HomePage = () => {
+  const msg = 'Hello World!'
   return (
-    <div>Hello World!</div>
+    <div>{msg}</div>
   )
 }
 
-export default connect(
-  (state) => {
-    return {}
-  }
-)(HomePage)
+export default HomePage

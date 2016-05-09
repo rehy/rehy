@@ -3,7 +3,6 @@
   "version": "0.0.13",
   "description": "ESLint configuration for rehy",
   "main": "eslintrc.yml",
-  "scripts": {},
   "dependencies": {
     "babel-eslint": "^6.0.4",
     "eslint": "^2.9.0",
@@ -13,8 +12,6 @@
     "eslint-plugin-jsx-a11y": "^1.2.0",
     "eslint-plugin-react": "^5.0.1"
   },
-  "devDependencies": {},
-  "peerDependencies": {},
   "repository": "https://github.com/rehy/rehy/tree/master/packages/eslint-config-rehy",
   "author": "Ratson",
   "license": "MIT",
