@@ -65,13 +65,11 @@ gulp.task('build', () => gulp.src([
   .pipe(gulpif(isJS, babel({
     presets: [
       'es2015',
-      'stage-3',
+      'stage-0',
       'react',
     ],
     plugins: [
-      'transform-export-extensions',
       'transform-runtime',
-      'lodash',
       'transform-flow-strip-types',
       'transform-react-remove-prop-types',
       'unassert',

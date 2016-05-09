@@ -1,7 +1,7 @@
-import _ from 'lodash'
+import get from 'lodash/get'
 
 export default () => {
-  if (_.get(window, 'Intl')) {
+  if (get(window, 'Intl')) {
     return Promise.resolve(false)
   }
 
