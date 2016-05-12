@@ -35,14 +35,14 @@
     "webpack": "^1.13.0",
     "webpack-cleanup-plugin": "^0.2.0",
     "webpack-dev-server": "^1.14.1",
-    "webpack-validator": "^1.6.0",
+    "webpack-validator": "^1.8.0",
     "yargs": "^4.7.0"
   },
   "devDependencies": {
     "react": "^15.0.2",
     "react-dom": "^15.0.2",
     "react-router": "^2.4.0",
-    "rehy": "0.0.12"
+    "rehy": "0.0.13"
   },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-cli",
   "author": "Ratson",
