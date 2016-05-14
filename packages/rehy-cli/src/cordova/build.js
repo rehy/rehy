@@ -5,6 +5,7 @@ import cpy from 'cpy'
 import fs from 'mz/fs'
 import manageTranslations from 'react-intl-translations-manager'
 import mkdirp from 'mkdirp-then'
+import pathExists from 'path-exists'
 import shell from 'shelljs'
 
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
@@ -31,6 +32,16 @@ const prepareBuildFolder = async (opts) => {
 
   shell.cp('-R', path.join(__dirname, 'hooks'), buildDir)
 
+  configXML.hasSplash = await pathExists(path.join(buildDir, 'splash.png'))
+  if (configXML.hasSplash) {
+    _.defaults(configXML, { preferences: {} })
+    _.defaults(configXML.preferences, {
+      AutoHideSplashScreen: false,
+      FadeSplashScreenDuration: 600,
+      ShowSplashScreenSpinner: true,
+      SplashScreenDelay: 0,
+    })
+  }
   const xmlContent = renderConfigXML(configXML)
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
