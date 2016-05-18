@@ -64,7 +64,6 @@ export default new WebpackConfig().merge({
   plugins: [
   ],
   devServer: {
-    devtool: 'eval',
     hot: true,
     inline: true,
     noInfo: false,
