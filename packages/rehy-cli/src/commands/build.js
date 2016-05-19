@@ -33,6 +33,13 @@ const extendForSplashScreen = ({ cordovaConfig }) => {
 export default ({ config }) => {
   _.defaults(config.cordovaConfig, { plugins: [] })
   _.defaults(config.webpackConfig, { plugins: [] })
+  if (_.isObject(config.cordovaConfig.plugins)) {
+    // eslint-disable-next-line no-param-reassign
+    config.cordovaConfig.plugins = _.map(config.cordovaConfig.plugins, (spec, name) => ({
+      name,
+      spec,
+    }))
+  }
   extendForGoogleAnalytics(config)
   extendForSplashScreen(config)
 

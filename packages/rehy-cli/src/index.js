@@ -54,10 +54,10 @@ const schema = Joi.object().keys({
   cordovaConfig: Joi.object().keys({
     id: Joi.string().required(),
     version: Joi.string().required(),
-    plugins: Joi.array().items(Joi.object().keys({
+    plugins: [Joi.object(), Joi.array().items(Joi.object().keys({
       name: Joi.string().required(),
       spec: Joi.string().required(),
-    })),
+    }))],
   }),
   intlConfig: Joi.object().keys({
     languages: Joi.array(),
