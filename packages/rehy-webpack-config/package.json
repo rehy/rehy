@@ -1,6 +1,6 @@
 {
   "name": "rehy-webpack-config",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "description": "Webpack configuration for rehy",
   "main": "lib/index.js",
   "scripts": {},
