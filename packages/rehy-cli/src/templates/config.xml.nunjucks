@@ -32,7 +32,15 @@
     <engine name="android" spec="~4.1.1" />
     <engine name="browser" spec="~4.0.0" />
 
-{% for plugin in plugins %}
+{% for plugin in plugins -%}
+{% if plugin.variables %}
+    <plugin name="{{ plugin.name }}" spec="{{ plugin.spec }}">
+    {% for variable in plugin.variables %}
+        <variable name="{{ variable.name }}" value="{{ variable.value }}" />
+    {% endfor %}
+    </plugin>
+{% else %}
     <plugin name="{{ plugin.name }}" spec="{{ plugin.spec }}" />
-{% endfor %}
+{% endif %}
+{%- endfor %}
 </widget>
