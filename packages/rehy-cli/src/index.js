@@ -58,6 +58,7 @@ const schema = Joi.object().keys({
       name: Joi.string().required(),
       spec: Joi.string().required(),
     }))],
+    preferences: Joi.object(),
   }),
   intlConfig: Joi.object().keys({
     languages: Joi.array(),

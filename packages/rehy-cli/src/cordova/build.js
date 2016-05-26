@@ -17,6 +17,15 @@ import CordovaBuildPlugin from './webpack-plugin'
 
 const renderConfigXML = ({ templatePath, templateContext }) => {
   const templateFilename = templatePath || 'config.xml.nunjucks'
+  const { hasSplash, preferences } = templateContext
+  if (hasSplash) {
+    _.defaults(preferences, {
+      AutoHideSplashScreen: false,
+      FadeSplashScreenDuration: 600,
+      ShowSplashScreenSpinner: true,
+      SplashScreenDelay: 0,
+    })
+  }
   return renderTemplate(templateFilename, templateContext)
 }
 
@@ -32,16 +41,6 @@ const prepareBuildFolder = async (opts) => {
 
   shell.cp('-R', path.join(__dirname, 'hooks'), buildDir)
 
-  configXML.hasSplash = await pathExists(path.join(buildDir, 'splash.png'))
-  if (configXML.hasSplash) {
-    _.defaults(configXML, { preferences: {} })
-    _.defaults(configXML.preferences, {
-      AutoHideSplashScreen: false,
-      FadeSplashScreenDuration: 600,
-      ShowSplashScreenSpinner: true,
-      SplashScreenDelay: 0,
-    })
-  }
   const xmlContent = renderConfigXML(configXML)
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
@@ -50,14 +49,18 @@ export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')
+
+  const hasSplash = await pathExists(path.join(buildDir, 'splash.png'))
   await prepareBuildFolder({
     buildDir,
     messagesDir,
     rootDir,
     configXML: {
       templateContext: {
+        preferences: {},
         ...app,
         ...cordovaConfig,
+        hasSplash,
       },
     },
   })
