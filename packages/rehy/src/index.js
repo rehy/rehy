@@ -14,11 +14,9 @@ function getAppNode({ appNode }) {
   return document.getElementById('app')
 }
 
-export default async (opts) => {
+function bootstrap(opts) {
   const { history, initialState, reducers, prepareMiddleware } = opts
   const appNode = getAppNode(opts)
-
-  await polyfillIntl()
 
   const store = createStore({ history, initialState, reducers, prepareMiddleware })
   const enhancedHistory = syncHistoryWithStore(history, store)
@@ -38,4 +36,8 @@ export default async (opts) => {
     store,
     history: enhancedHistory,
   }
+}
+
+export default function (opts) {
+  return polyfillIntl().then(() => bootstrap(opts))
 }

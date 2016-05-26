@@ -62,19 +62,7 @@ gulp.task('build', () => gulp.src([
   }))
   .pipe(cache('build'))
   .pipe(changed(resolvePackageRoot))
-  .pipe(gulpif(isJS, babel({
-    presets: [
-      'es2015',
-      'stage-0',
-      'react',
-    ],
-    plugins: [
-      'transform-runtime',
-      'transform-flow-strip-types',
-      'transform-react-remove-prop-types',
-      'unassert',
-    ],
-  })))
+  .pipe(gulpif(isJS, babel()))
   .pipe(gulp.dest(resolvePackageRoot)))
 
 gulp.task('lint', shell.task(['npm run lint'], {
