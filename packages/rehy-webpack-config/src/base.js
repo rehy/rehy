@@ -2,8 +2,6 @@ import path from 'path'
 
 import WebpackConfig from 'webpack-config'
 
-const rootPath = (...args) => path.resolve(__dirname, '..', ...args)
-
 const stats = {
   assets: true,
   children: false,
