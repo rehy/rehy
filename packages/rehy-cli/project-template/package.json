@@ -6,7 +6,7 @@
     "react-router": "^2.4.1",
     "recompose": "^0.19.0",
     "redux": "^3.5.2",
-    "rehy": "^0.0.15",
+    "rehy": "^0.0.16",
     "reselect": "^2.5.1"
   },
   "devDependencies": {
