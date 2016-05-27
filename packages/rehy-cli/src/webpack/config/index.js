@@ -8,10 +8,10 @@ import webpackConfigBase from 'rehy-webpack-config'
 const webpackOutputPath = '.rehy/local/webpack-output'
 
 const validateConfig = (config) => {
-  if (process.env.WEBPACK_VALIDATE_SKIP) {
-    return config
+  if (!process.env.WEBPACK_VALIDATE_SKIP) {
+    validate(config.toObject())
   }
-  return validate(config)
+  return config
 }
 
 export default validateConfig(webpackConfigBase.extend({
@@ -25,4 +25,4 @@ export default validateConfig(webpackConfigBase.extend({
   output: {
     path: path.join(process.cwd(), webpackOutputPath),
   },
-}).toObject())
+}))
