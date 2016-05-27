@@ -1,12 +1,18 @@
 extends:
   - airbnb
+  - plugin:ava/recommended
+  - plugin:lodash/recommended
 parser: babel-eslint
 plugins:
+  - ava
   - babel
+  - lodash
   - promise
 rules:
   arrow-body-style: off
   import/no-mutable-exports: off  # cause "TypeError: Cannot read property 'name' of undefined"
+  lodash/prefer-lodash-method: off
+  max-len: off
   promise/param-names: error
   react/prop-types: off
   semi: ["error", "never"]
