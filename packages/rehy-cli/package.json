@@ -1,6 +1,6 @@
 {
   "name": "rehy-cli",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Command line interface for rehy",
   "dependencies": {
     "babel-plugin-react-intl": "^2.1.3",
@@ -29,7 +29,7 @@
     "nunjucks": "^2.4.2",
     "path-exists": "^3.0.0",
     "react-intl-translations-manager": "^3.0.1",
-    "rehy-webpack-config": "^0.0.19",
+    "rehy-webpack-config": "^0.0.20",
     "shelljs": "^0.7.0",
     "stats-webpack-plugin": "^0.3.1",
     "tildify": "^1.2.0",
