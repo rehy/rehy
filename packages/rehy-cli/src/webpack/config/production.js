@@ -15,13 +15,15 @@ const htmlMinifyConfig = {
   useShortDoctype: true,
 }
 
+export const htmlWebpackPlugin = new HtmlWebpackPlugin({
+  templateContent,
+  minify: htmlMinifyConfig,
+  inject: true,
+})
+
 export default webpackConfigBase.merge({
   plugins: [
-    new HtmlWebpackPlugin({
-      templateContent,
-      minify: htmlMinifyConfig,
-      inject: true,
-    }),
+    htmlWebpackPlugin,
     new StatsPlugin('stats.json'),
   ],
 })
