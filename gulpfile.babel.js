@@ -16,14 +16,14 @@ import shell from 'gulp-shell'
 const paths = {
   libs: 'packages/*/lib',
   packageJSONs: ['package.json', 'packages/*/package.json'],
-  scripts: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => [
+  scripts: _.flatMap(glob.sync('packages/*'), (packageRoot) => [
     `${packageRoot}/src/**/*.js`,
     `${packageRoot}/src/**/*.jsx`,
-  ])),
-  statics: _.flatten(_.map(glob.sync('packages/*'), (packageRoot) => [
+  ]),
+  statics: _.flatMap(glob.sync('packages/*'), (packageRoot) => [
     `${packageRoot}/src/**/*.nunjucks`,
     `${packageRoot}/src/**/*.sh`,
-  ])),
+  ]),
 }
 
 const resolvePackageRoot = (file) => {
