@@ -18,7 +18,9 @@
     "webpack": "^1.13.1",
     "webpack-config": "^5.0.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-validator": "^2.1.1"
+  },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-webpack-config",
   "author": "Ratson",
   "license": "MIT",

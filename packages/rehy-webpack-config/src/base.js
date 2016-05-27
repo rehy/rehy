@@ -25,16 +25,13 @@ export default new WebpackConfig().merge({
   module: {
     loaders: [
       {
-        id: 'js',
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loader: 'babel?cacheDirectory',
       }, {
-        id: 'css',
         test: /\.css$/,
         loader: 'style!css',
       }, {
-        id: 'json',
         test: /\.json$/,
         exclude: /node_modules/,
         loader: 'json',

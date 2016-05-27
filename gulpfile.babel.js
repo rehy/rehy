@@ -1,6 +1,7 @@
 import _ from 'lodash'
 import glob from 'glob'
 
+import ava from 'gulp-ava'
 import babel from 'gulp-babel'
 import cache from 'gulp-cached'
 import changed from 'gulp-changed'
@@ -81,6 +82,11 @@ gulp.task('prepublish', (callback) => {
 
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['build'])
+})
+
+gulp.task('test', () => {
+  return gulp.src('packages/*/test/**/*.js')
+    .pipe(ava())
 })
 
 gulp.task('default', ['watch'])

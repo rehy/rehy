@@ -25,4 +25,4 @@ export default validateConfig(webpackConfigBase.extend({
   output: {
     path: path.join(process.cwd(), webpackOutputPath),
   },
-}))
+}.toObject()))
