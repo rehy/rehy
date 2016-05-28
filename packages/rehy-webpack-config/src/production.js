@@ -6,7 +6,7 @@ import webpack from 'webpack'
 import baseConfig from './base'
 
 export default baseConfig.merge((config) => {
-  const cssLoader = _.find(config.module.loaders, ['id', 'css'])
+  const cssLoader = _.find(config.module.loaders, ['test', /\.css$/])
   cssLoader.loader = ExtractTextPlugin.extract('style', 'css')
   return config
 }).merge({

@@ -75,7 +75,7 @@ gulp.task('lint', shell.task(['npm run lint'], {
 gulp.task('prepublish', (callback) => {
   runSequence(
     'clean',
-    ['build', 'lint'],
+    ['lint', 'test', 'build'],
     callback,
   )
 })
