@@ -72,13 +72,15 @@ gulp.task('lint', shell.task(['npm run lint'], {
   },
 }))
 
-gulp.task('prepublish', (callback) => {
+gulp.task('clean-build', (callback) => {
   runSequence(
     'clean',
-    ['lint', 'test', 'build'],
+    'build',
     callback,
   )
 })
+
+gulp.task('prepublish', ['lint', 'test', 'clean-build'])
 
 gulp.task('watch', () => {
   gulp.watch(paths.scripts, ['build'])
