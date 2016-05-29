@@ -24,6 +24,7 @@ Similar Projects
 
 - `ionic <https://github.com/driftyco/ionic>`_
 - `meteor <https://github.com/meteor/meteor>`_
+- `systematic <https://github.com/polyconseil/systematic>`_
 - `tamia <https://github.com/tamiadev/tamia>`_
 
 React specific
@@ -31,6 +32,7 @@ React specific
 
 - `enclave <https://github.com/eanplatter/enclave>`_
 - `hops <https://github.com/xing/hops>`_
+- `meatier <https://github.com/mattkrick/meatier>`_
 - `react-heatpack <https://github.com/insin/react-heatpack>`_
 - `react-server <https://github.com/redfin/react-server>`_
 - `redux-bootstrap <https://github.com/redux-bootstrap/redux-bootstrap>`_
