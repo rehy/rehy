@@ -12,6 +12,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
 
+{% for name, spec in engines %}
+    <engine name="{{ name }}" spec="{{ spec }}" />
+{% endfor %}
+
 {% for name, value in preferences %}
     <preference name="{{ name }}" value="{{ value }}" />
 {% endfor %}
@@ -28,9 +32,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-
-    <engine name="android" spec="~4.1.1" />
-    <engine name="browser" spec="~4.0.0" />
 
 {% for plugin in plugins -%}
 {% if plugin.variables %}

@@ -49,6 +49,11 @@ export default ({ config }) => {
   _.defaults(config.cordovaConfig, { plugins: [] })
   _.defaults(config.webpackConfig, { plugins: [] })
   // eslint-disable-next-line no-param-reassign
+  config.cordovaConfig.engines = Object.assign({
+    android: '~5.1.1',
+    browser: '~4.1.0',
+  }, config.cordovaConfig.engines)
+  // eslint-disable-next-line no-param-reassign
   config.cordovaConfig.plugins = normalizedCordovaPlugins(config.cordovaConfig.plugins)
   extendForGoogleAnalytics(config)
   extendForSplashScreen(config)
