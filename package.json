@@ -33,7 +33,7 @@
     "gulp-install": "^0.6.0",
     "gulp-plumber": "^1.1.0",
     "gulp-shell": "^0.5.2",
-    "lerna": "2.0.0-beta.14",
+    "lerna": "2.0.0-beta.15",
     "lodash": "^4.13.1",
     "npm-check-updates": "^2.6.5",
     "run-sequence": "^1.2.1"
