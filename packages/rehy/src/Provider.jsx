@@ -11,13 +11,7 @@ const Provider = ({ children, store }) => {
 
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
-  defaultLocale: PropTypes.string,
-  locale: PropTypes.string.isRequired,
   store: PropTypes.object.isRequired,
-}
-
-Provider.defaultProps = {
-  locale: 'en',
 }
 
 export default Provider
