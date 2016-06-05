@@ -37,4 +37,5 @@ React specific
 - `react-server <https://github.com/redfin/react-server>`_
 - `redux-bootstrap <https://github.com/redux-bootstrap/redux-bootstrap>`_
 - `redux-cli <https://github.com/SpencerCDixon/redux-cli>`_
+- `roc <https://github.com/rocjs/roc>`_
 - `tarec <https://github.com/geowarin/tarec>`_
