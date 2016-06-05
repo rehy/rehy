@@ -1,5 +1,7 @@
 import path from 'path'
 
+import 'loud-rejection/register'
+
 import _ from 'lodash'
 import chalk from 'chalk'
 import cpy from 'cpy'
