@@ -46,7 +46,7 @@ export default new WebpackConfig().merge({
     ],
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx'],
+    extensions: ['', '.js', '.jsx'],
     modulesDirectories: ['node_modules'],
   },
   resolveLoader: {
