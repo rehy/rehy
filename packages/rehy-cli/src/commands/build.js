@@ -58,7 +58,8 @@ export default ({ config }) => {
   extendForGoogleAnalytics(config)
   extendForSplashScreen(config)
 
-  cordovaBulid(config).catch(() => {
+  cordovaBulid(config).catch((error) => {
+    console.error(error)
     console.trace('Uncaught error')
     process.env.exit(-1)
   })
