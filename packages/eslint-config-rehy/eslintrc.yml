@@ -13,6 +13,7 @@ rules:
   ava/no-ignored-test-files: off
   import/no-mutable-exports: off  # cause "TypeError: Cannot read property 'name' of undefined"
   lodash/path-style: off
+  lodash/prefer-chain: off
   lodash/prefer-constant: off
   lodash/prefer-lodash-method: off
   max-len: off
