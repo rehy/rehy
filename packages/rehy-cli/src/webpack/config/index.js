@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import path from 'path'
 
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 import validate from 'webpack-validator'
-
 import webpackConfigBase from 'rehy-webpack-config'
 
 const webpackOutputPath = '.rehy/local/webpack-output'
@@ -25,4 +25,7 @@ export default validateConfig(webpackConfigBase.extend({
   output: {
     path: path.join(process.cwd(), webpackOutputPath),
   },
+  plugins: [
+    new ProgressBarPlugin(),
+  ],
 }))

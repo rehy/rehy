@@ -30,6 +30,7 @@
     "mz": "^2.4.0",
     "nunjucks": "^2.4.2",
     "path-exists": "^3.0.0",
+    "progress-bar-webpack-plugin": "^1.8.0",
     "react-intl-translations-manager": "^3.0.1",
     "rehy-webpack-config": "^0.0.25",
     "stats-webpack-plugin": "^0.3.1",
