@@ -1,8 +1,8 @@
 import path from 'path'
 
+import { spawn } from 'child-process-promise'
 import cpy from 'cpy'
 import del from 'del'
-import execa from 'execa'
 import pathExists from 'path-exists'
 
 function CordovaBuildPlugin(opts) {
@@ -40,10 +40,10 @@ CordovaBuildPlugin.prototype.apply = function apply(compiler) {
       },
     }
     if (!await pathExists(path.join(cordovaDir, 'platforms'))) {
-      await execa('cordova', ['prepare'], spawnOpts)
+      await spawn('cordova', ['prepare'], spawnOpts)
     }
 
-    await execa('cordova', args, spawnOpts)
+    await spawn('cordova', args, spawnOpts)
   })
 }
 

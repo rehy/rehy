@@ -59,8 +59,7 @@ export default ({ config }) => {
   extendForSplashScreen(config)
 
   cordovaBulid(config).catch((error) => {
-    console.error(error)
-    console.trace('Uncaught error')
+    console.error(error.stack)  // eslint-disable-line no-console
     process.env.exit(-1)
   })
 }

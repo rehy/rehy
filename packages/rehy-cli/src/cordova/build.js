@@ -2,11 +2,11 @@ import path from 'path'
 
 import _ from 'lodash'
 import cpy from 'cpy'
+import execa from 'execa'
 import fs from 'mz/fs'
 import manageTranslations from 'react-intl-translations-manager'
 import mkdirp from 'mkdirp-then'
 import pathExists from 'path-exists'
-import shell from 'shelljs'
 
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 
@@ -38,8 +38,7 @@ const prepareBuildFolder = async (opts) => {
     'icon.png',
     'splash.png',
   ], buildDir, { cwd: rootDir })
-
-  shell.cp('-R', path.join(__dirname, 'hooks'), buildDir)
+  await execa('cp', ['-R', path.join(__dirname, 'hooks'), buildDir])
 
   const xmlContent = renderConfigXML(configXML)
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
