@@ -1,7 +1,9 @@
+import isFunction from 'lodash/isFunction'
+
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
+import { devMiddleware } from 'redux-devtools-preset'
 import { responsiveStoreEnhancer } from 'redux-responsive'
 import { routerMiddleware } from 'react-router-redux'
-import isFunction from 'lodash/isFunction'
 import thunk from 'redux-thunk'
 
 import * as baseReducers from './reducers'
@@ -18,9 +20,7 @@ export default ({ history, initialState, reducers, prepareMiddleware }) => {
   }) : [...middleware, applyMiddleware(...applicableMiddleware)]
 
   if (process.env.NODE_ENV === 'development') {
-    // eslint-disable-next-line global-require
-    const dev = require('./dev-tools/middleware').default
-    preparedMiddleware.push(...dev())
+    preparedMiddleware.push(...devMiddleware())
   }
 
   const store = createStore(rootReducer, initialState, compose(...preparedMiddleware))
