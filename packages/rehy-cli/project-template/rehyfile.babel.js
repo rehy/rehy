@@ -36,6 +36,9 @@ export const webpackConfig = {
     ],
     env: {
       production: {
+        presets: [
+          'react-optimize',
+        ],
         plugins: [
           'lodash',
         ],
