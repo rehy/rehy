@@ -16,10 +16,10 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
-    "webpack-config": "^5.1.0"
+    "webpack-config": "^5.2.1"
   },
   "devDependencies": {
-    "webpack-validator": "^2.2.0"
+    "webpack-validator": "^2.2.2"
   },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-webpack-config",
   "author": "Ratson",
