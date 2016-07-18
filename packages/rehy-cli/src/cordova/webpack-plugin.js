@@ -1,9 +1,10 @@
 import path from 'path'
 
-import { spawn } from 'child-process-promise'
 import cpy from 'cpy'
 import del from 'del'
 import pathExists from 'path-exists'
+
+import { spawn } from '../utils'
 
 function CordovaBuildPlugin(opts) {
   this.opts = opts
@@ -27,17 +28,8 @@ CordovaBuildPlugin.prototype.apply = function apply(compiler) {
     await del(['**'], { cwd: wwwDir })
     await cpy(['*', ...blacklistPatterns], wwwDir, { cwd: sourcePath })
 
-    const paths = [
-      process.env.PATH,
-      path.resolve(require.resolve('.'), '../../../node_modules/.bin'),
-    ]
     const spawnOpts = {
-      stdio: 'inherit',
       cwd: cordovaDir,
-      env: {
-        ...process.env,
-        PATH: paths.join(':'),
-      },
     }
     if (!await pathExists(path.join(cordovaDir, 'platforms'))) {
       await spawn('cordova', ['prepare'], spawnOpts)
