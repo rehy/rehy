@@ -8,6 +8,7 @@
     "chalk": "^1.1.3",
     "child-process-promise": "^2.0.3",
     "cordova": "^6.2.0",
+    "cordova-check-plugins": "^1.1.2",
     "cordova-icon": "^0.7.0",
     "cordova-splash": "^0.7.1",
     "cpy": "^4.0.1",

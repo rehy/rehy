@@ -40,6 +40,7 @@ const parser = yargs
   .usage(usage, cliOptions)
   .command('new', 'Create project')
   .command('dev', 'Development server')
+  .command('check-updates', 'Check updates for Cordova plugins')
   .help()
 const opts = parser.argv
 
@@ -100,7 +101,7 @@ const handleArguments = (env) => {
     process.exit(-1)
   }
 
-  const subCommand = _.get(opts._, [0], 'build')
+  const subCommand = _.camelCase(_.get(opts._, [0], 'build'))
   commands[subCommand]({
     config: exported,
   })
