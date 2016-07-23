@@ -34,6 +34,7 @@ React specific
 - `hops <https://github.com/xing/hops>`_
 - `ignite <https://github.com/infinitered/ignite>`_
 - `meatier <https://github.com/mattkrick/meatier>`_
+- `nwb <https://github.com/insin/nwb>`_
 - `react-heatpack <https://github.com/insin/react-heatpack>`_
 - `react-server <https://github.com/redfin/react-server>`_
 - `reactpack <https://github.com/olahol/reactpack>`_
