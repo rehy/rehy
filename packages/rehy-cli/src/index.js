@@ -41,6 +41,7 @@ const parser = yargs
   .command('new', 'Create project')
   .command('dev', 'Development server')
   .command('check-updates', 'Check updates for Cordova plugins')
+  .command('inspect-size', 'Inspect size of Webpack bundle')
   .help()
 const opts = parser.argv
 
