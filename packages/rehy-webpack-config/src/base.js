@@ -33,7 +33,6 @@ export default new WebpackConfig().merge({
         loader: 'style!css',
       }, {
         test: /\.json$/,
-        exclude: /node_modules/,
         loader: 'json',
       },
       {

@@ -19,5 +19,13 @@ export const build = (config = config) => {
         resolve(stats)
       }
     })
+  }).then((stats) => {
+    // eslint-disable-next-line no-console
+    console.log(stats.toString(config.stats))
+    return stats
+  }).catch((error) => {
+    // eslint-disable-next-line no-console
+    console.trace(error)
+    throw error
   })
 }

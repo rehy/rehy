@@ -60,6 +60,6 @@ export default ({ config }) => {
 
   cordovaBulid(config).catch((error) => {
     console.error(error.stack)  // eslint-disable-line no-console
-    process.env.exit(-1)
+    process.exit(-1)
   })
 }

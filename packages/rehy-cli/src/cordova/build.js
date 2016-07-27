@@ -95,7 +95,7 @@ export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
       ],
       babel: {
         plugins: [
-          ['react-intl', {
+          [require.resolve('babel-plugin-react-intl'), {
             messagesDir,
           }],
         ],
