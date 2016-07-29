@@ -50,7 +50,7 @@ export default ({ config }) => {
   _.defaults(config.webpackConfig, { plugins: [] })
   // eslint-disable-next-line no-param-reassign
   config.cordovaConfig.engines = Object.assign({
-    android: '~5.1.1',
+    android: '~5.2.1',
     browser: '~4.1.0',
   }, config.cordovaConfig.engines)
   // eslint-disable-next-line no-param-reassign
