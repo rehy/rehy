@@ -58,6 +58,7 @@ const schema = Joi.object().keys({
   cordovaConfig: Joi.object().keys({
     id: Joi.string().required(),
     version: Joi.string().required(),
+    versionCode: Joi.number().integer(),
     engines: Joi.object(),
     plugins: [Joi.object(), Joi.array().items(Joi.object().keys({
       name: Joi.string().required(),
