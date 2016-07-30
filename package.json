@@ -8,7 +8,6 @@
     "publish": "lerna publish",
     "test": "gulp test"
   },
-  "dependencies": {},
   "devDependencies": {
     "ava": "^0.15.2",
     "babel-plugin-transform-export-extensions": "^6.8.0",

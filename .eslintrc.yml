@@ -1,1 +1,6 @@
 extends: rehy
+env:
+  browser: true
+rules:
+  camelcase: off
+  import/no-extraneous-dependencies: off

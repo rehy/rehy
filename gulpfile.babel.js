@@ -57,6 +57,7 @@ gulp.task('build', () => gulp.src([
 ])
   .pipe(plumber({
     errorHandler(err) {
+      // eslint-disable-next-line no-console
       console.error(err)
       this.emit('end')
     },

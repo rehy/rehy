@@ -25,6 +25,8 @@ async function main() {
 }
 
 main().catch((err) => {
+  // eslint-disable-next-line no-console
   console.trace('Uncaught error')
+  // eslint-disable-next-line no-alert
   alert(`Unknown Error!\nPlease contact our support.\n\n${err.stack}`)
 })

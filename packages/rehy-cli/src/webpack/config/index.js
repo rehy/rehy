@@ -20,8 +20,7 @@ export default validateConfig(webpackConfigBase.extend({
     config.module.loaders = config.module.loaders.map((loader) => _.omit(loader, 'id'))
     return config
   },
-})
-.merge({
+}).merge({
   output: {
     path: path.join(process.cwd(), webpackOutputPath),
   },

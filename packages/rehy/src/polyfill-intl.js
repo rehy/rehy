@@ -10,6 +10,7 @@ export default () => {
       'intl',
     ], (require) => {
       require('intl')
+
       resolve(true)
     })
   })
