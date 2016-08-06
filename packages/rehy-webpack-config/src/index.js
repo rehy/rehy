@@ -1,8 +1,8 @@
 import path from 'path'
 
-import { Config, ConfigEnvironment } from 'webpack-config'
+import Config, { environment } from 'webpack-config'
 
-ConfigEnvironment.INSTANCE.setAll({
+environment.setAll({
   env() {
     return process.env.WEBPACK_ENV || process.env.NODE_ENV || 'development'
   },
