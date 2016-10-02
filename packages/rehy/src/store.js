@@ -8,7 +8,7 @@ import thunk from 'redux-thunk'
 
 import * as baseReducers from './reducers'
 
-export default ({ history, initialState, reducers, prepareMiddleware }) => {
+export default ({ history, initialState, reducers, prepareMiddleware, rootNode }) => {
   const rootReducer = combineReducers({
     ...baseReducers,
     ...reducers,
@@ -20,7 +20,7 @@ export default ({ history, initialState, reducers, prepareMiddleware }) => {
   }) : [...middleware, applyMiddleware(...applicableMiddleware)]
 
   if (process.env.NODE_ENV === 'development') {
-    preparedMiddleware.push(...devMiddleware())
+    preparedMiddleware.push(...devMiddleware({rootNode}))
   }
 
   const store = createStore(rootReducer, initialState, compose(...preparedMiddleware))

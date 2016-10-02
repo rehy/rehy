@@ -1,7 +1,6 @@
 /* global GA */
 import { syncHistoryWithStore } from 'react-router-redux'
 
-import { appendDevPanel } from 'redux-devtools-preset'
 import createStore from './store'
 import polyfillIntl from './polyfill-intl'
 
@@ -18,10 +17,15 @@ function bootstrap(opts) {
   const { history, initialState, reducers, prepareMiddleware } = opts
   const appNode = getAppNode(opts)
 
-  const store = createStore({ history, initialState, reducers, prepareMiddleware })
+  const store = createStore({
+    history,
+    initialState,
+    reducers,
+    prepareMiddleware,
+    rootNode: appNode,
+  })
   const enhancedHistory = syncHistoryWithStore(history, store)
 
-  appendDevPanel({ rootNode: appNode, store })
   initCordova({ store })
 
   if (process.env.GOOGLE_ANALYTICS_ID && process.env.NODE_ENV === 'production' && window.GA) {
