@@ -7,7 +7,7 @@
   "dependencies": {
     "fbjs": "^0.8.5",
     "intl": "^1.2.5",
-    "lodash": "^4.16.2",
+    "lodash": "^4.16.3",
     "react-intl": "^2.1.5",
     "react-intl-redux": "^0.1.0",
     "react-redux": "^4.4.5",

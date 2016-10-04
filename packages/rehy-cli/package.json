@@ -20,10 +20,10 @@
     "exit": "^0.1.2",
     "html-webpack-plugin": "^2.22.0",
     "interpret": "^1.0.1",
-    "joi": "^9.0.4",
+    "joi": "^9.1.0",
     "json-loader": "^0.5.4",
     "liftoff": "^2.3.0",
-    "lodash": "^4.16.2",
+    "lodash": "^4.16.3",
     "loud-rejection": "^1.6.0",
     "minimatch": "^3.0.3",
     "mkdirp": "^0.5.1",
@@ -40,8 +40,8 @@
     "webpack-bundle-size-analyzer": "^2.0.2",
     "webpack-cleanup-plugin": "^0.4.0",
     "webpack-dev-server": "^1.16.1",
-    "webpack-validator": "^2.2.7",
-    "yargs": "^5.0.0"
+    "webpack-validator": "^2.2.8",
+    "yargs": "^6.0.0"
   },
   "devDependencies": {
     "react": "^15.3.2",

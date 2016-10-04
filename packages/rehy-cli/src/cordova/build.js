@@ -15,7 +15,7 @@ import { renderTemplate } from '../utils'
 
 import CordovaBuildPlugin from './webpack-plugin'
 
-const renderConfigXML = ({ templatePath, templateContext }) => {
+function renderConfigXML({ templatePath, templateContext }) {
   const templateFilename = templatePath || 'config.xml.nunjucks'
   const { hasSplash, preferences } = templateContext
   if (hasSplash) {
@@ -29,7 +29,7 @@ const renderConfigXML = ({ templatePath, templateContext }) => {
   return renderTemplate(templateFilename, templateContext)
 }
 
-const prepareBuildFolder = async (opts) => {
+async function prepareBuildFolder(opts) {
   const { buildDir, messagesDir, rootDir, configXML = {} } = opts
   await mkdirp(messagesDir)
   await mkdirp(path.join(buildDir, 'www'))
@@ -44,7 +44,7 @@ const prepareBuildFolder = async (opts) => {
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default async ({ app, cordovaConfig, intlConfig, webpackConfig }) => {
+export default async function build({ app, cordovaConfig, intlConfig, webpackConfig }) {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')

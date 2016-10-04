@@ -20,7 +20,7 @@ export default ({ history, initialState, reducers, prepareMiddleware, rootNode }
   }) : [...middleware, applyMiddleware(...applicableMiddleware)]
 
   if (process.env.NODE_ENV === 'development') {
-    preparedMiddleware.push(...devMiddleware({rootNode}))
+    preparedMiddleware.push(...devMiddleware({ rootNode }))
   }
 
   const store = createStore(rootReducer, initialState, compose(...preparedMiddleware))
