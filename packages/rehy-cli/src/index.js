@@ -93,7 +93,7 @@ const handleArguments = (env) => {
     )
   }
 
-  // eslint-disable-next-line global-require
+  // eslint-disable-next-line global-require,import/no-dynamic-require
   const exported = require(env.configPath)
   log.info('Using rehyfile', chalk.magenta(tildify(env.configPath)))
 
