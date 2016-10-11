@@ -60,6 +60,7 @@ export default async function build({ app, cordovaConfig, intlConfig, webpackCon
         ...app,
         ...cordovaConfig,
         hasSplash,
+        isProduction: process.env.NODE_ENV === 'production',
       },
     },
   })
