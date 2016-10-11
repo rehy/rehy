@@ -4,7 +4,7 @@ import { DefinePlugin } from 'webpack'
 
 import cordovaBulid from '../cordova'
 
-const extendForGoogleAnalytics = ({ app, cordovaConfig, webpackConfig }) => {
+function extendForGoogleAnalytics({ app, cordovaConfig, webpackConfig }) {
   const googleAnalyticsId = _.get(app, 'googleAnalyticsId')
   if (googleAnalyticsId === 'UA-xxxxxxxx-x') {
     // eslint-disable-next-line no-param-reassign
@@ -23,11 +23,20 @@ const extendForGoogleAnalytics = ({ app, cordovaConfig, webpackConfig }) => {
   }
 }
 
-const extendForSplashScreen = ({ cordovaConfig }) => {
+function extendForSplashScreen({ cordovaConfig }) {
   cordovaConfig.plugins.push({
     name: 'cordova-plugin-splashscreen',
-    spec: '~3.2.2',
+    spec: '~4.0.0',
   })
+}
+
+function extendForRemotedev({ webpackConfig, remotedevConfig }) {
+  webpackConfig.plugins.push(new DefinePlugin({
+    'process.env': {
+      npm_package_remotedev_hostname: JSON.stringify(remotedevConfig.hostname || 'localhost'),
+      npm_package_remotedev_port: JSON.stringify(remotedevConfig.port || 8000),
+    },
+  }))
 }
 
 function normalizedCordovaPlugins(plugins) {
@@ -45,18 +54,27 @@ function normalizedCordovaPlugins(plugins) {
   })
 }
 
-export default ({ config }) => {
+export function normalizeConfig(config) {
+  _.defaults(config.remotedevConfig, {})
   _.defaults(config.cordovaConfig, { plugins: [] })
   _.defaults(config.webpackConfig, { plugins: [] })
   // eslint-disable-next-line no-param-reassign
   config.cordovaConfig.engines = Object.assign({
-    android: '~5.2.1',
+    android: '~5.2.2',
     browser: '~4.1.0',
   }, config.cordovaConfig.engines)
   // eslint-disable-next-line no-param-reassign
   config.cordovaConfig.plugins = normalizedCordovaPlugins(config.cordovaConfig.plugins)
-  extendForGoogleAnalytics(config)
+
+  if (process.env.NODE_ENV === 'production') {
+    extendForGoogleAnalytics(config)
+  }
+  extendForRemotedev(config)
   extendForSplashScreen(config)
+}
+
+export default ({ config }) => {
+  normalizeConfig(config)
 
   cordovaBulid(config).catch((error) => {
     console.error(error.stack)  // eslint-disable-line no-console

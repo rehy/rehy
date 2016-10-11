@@ -63,6 +63,10 @@ const schema = Joi.object().keys({
     plugins: [Joi.object(), Joi.array().items(Joi.object().keys({
       name: Joi.string().required(),
       spec: Joi.string().required(),
+      variables: Joi.array().items(Joi.object().keys({
+        name: Joi.string().required(),
+        value: Joi.string().required(),
+      })),
     }))],
     preferences: Joi.object(),
   }),
@@ -70,6 +74,7 @@ const schema = Joi.object().keys({
     languages: Joi.array(),
   }),
   webpackConfig: Joi.object(),
+  remotedevConfig: Joi.object(),
 })
 
 const handleArguments = (env) => {

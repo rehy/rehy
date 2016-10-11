@@ -14,7 +14,7 @@ function getAppNode({ appNode }) {
 }
 
 function bootstrap(opts) {
-  const { history, initialState, reducers, prepareMiddleware } = opts
+  const { history, initialState, reducers, prepareMiddleware, devTools } = opts
   const appNode = getAppNode(opts)
 
   const store = createStore({
@@ -22,7 +22,7 @@ function bootstrap(opts) {
     initialState,
     reducers,
     prepareMiddleware,
-    rootNode: appNode,
+    devTools,
   })
   const enhancedHistory = syncHistoryWithStore(history, store)
 

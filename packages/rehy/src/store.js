@@ -1,14 +1,21 @@
+import defaults from 'lodash/defaults'
 import isFunction from 'lodash/isFunction'
 
-import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
-import { devMiddleware } from 'redux-devtools-preset'
+import { applyMiddleware, combineReducers, createStore } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools'
 import { responsiveStoreEnhancer } from 'redux-responsive'
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 
 import * as baseReducers from './reducers'
 
-export default ({ history, initialState, reducers, prepareMiddleware, rootNode }) => {
+const defaultDevToolsOptions = {
+  hostname: process.env.npm_package_remotedev_hostname || 'localhost',
+  port: Number(process.env.npm_package_remotedev_port) || 8000,
+}
+
+export default ({ history, initialState, reducers, prepareMiddleware, devTools }) => {
+  const devToolsOpts = defaults(devTools, defaultDevToolsOptions)
   const rootReducer = combineReducers({
     ...baseReducers,
     ...reducers,
@@ -19,10 +26,6 @@ export default ({ history, initialState, reducers, prepareMiddleware, rootNode }
     middleware, applicableMiddleware, applyMiddleware,
   }) : [...middleware, applyMiddleware(...applicableMiddleware)]
 
-  if (process.env.NODE_ENV === 'development') {
-    preparedMiddleware.push(...devMiddleware({ rootNode }))
-  }
-
-  const store = createStore(rootReducer, initialState, compose(...preparedMiddleware))
+  const store = createStore(rootReducer, initialState, composeWithDevTools(devToolsOpts)(...preparedMiddleware))
   return store
 }
