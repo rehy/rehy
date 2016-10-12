@@ -1,6 +1,6 @@
 {
   "name": "rehy-cli",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Command line interface for rehy",
   "dependencies": {
     "babel-plugin-react-intl": "^2.2.0",
@@ -33,7 +33,7 @@
     "path-exists": "^3.0.0",
     "progress-bar-webpack-plugin": "^1.9.0",
     "react-intl-translations-manager": "^3.1.0",
-    "rehy-webpack-config": "^0.0.31",
+    "rehy-webpack-config": "^0.0.32",
     "remotedev-server": "^0.2.0",
     "stats-webpack-plugin": "^0.4.2",
     "tildify": "^1.2.0",
@@ -48,7 +48,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
-    "rehy": "^0.0.31"
+    "rehy": "^0.0.32"
   },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-cli",
   "author": "Ratson",

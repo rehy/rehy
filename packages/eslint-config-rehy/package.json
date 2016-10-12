@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-rehy",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "ESLint configuration for rehy",
   "main": "eslintrc.yml",
   "dependencies": {
