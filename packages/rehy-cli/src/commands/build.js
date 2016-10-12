@@ -33,8 +33,8 @@ function extendForSplashScreen({ cordovaConfig }) {
 function extendForRemotedev({ webpackConfig, remotedevConfig }) {
   webpackConfig.plugins.push(new DefinePlugin({
     'process.env': {
-      npm_package_remotedev_hostname: JSON.stringify(remotedevConfig.hostname || 'localhost'),
-      npm_package_remotedev_port: JSON.stringify(remotedevConfig.port || 8000),
+      npm_package_remotedev_hostname: JSON.stringify(remotedevConfig.hostname),
+      npm_package_remotedev_port: JSON.stringify(remotedevConfig.port),
     },
   }))
 }
@@ -55,7 +55,15 @@ function normalizedCordovaPlugins(plugins) {
 }
 
 export function normalizeConfig(config) {
-  _.defaults(config.remotedevConfig, {})
+  _.defaults(config, {
+    cordovaConfig: {},
+    remotedevConfig: {},
+    webpackConfig: {},
+  })
+  _.defaults(config.remotedevConfig, {
+    hostname: 'localhost',
+    port: 8000,
+  })
   _.defaults(config.cordovaConfig, { plugins: [] })
   _.defaults(config.webpackConfig, { plugins: [] })
   // eslint-disable-next-line no-param-reassign
