@@ -1,0 +1,21 @@
+{
+  "name": "rehy-billing",
+  "version": "0.0.0",
+  "description": "Redux binding for Corodova billing.",
+  "main": "lib/index.js",
+  "scripts": {},
+  "dependencies": {
+    "lodash": "^4.16.4"
+  },
+  "devDependencies": {
+  },
+  "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-billing",
+  "author": "Ratson",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "src"
+  ]
+}
