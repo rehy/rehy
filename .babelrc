@@ -1,3 +1,6 @@
 {
-  "presets": ["modern-node", "stage-0"]
+  "presets": [
+    ["env", {"targets": {"node": "current"}}],
+    "stage-0"
+  ]
 }

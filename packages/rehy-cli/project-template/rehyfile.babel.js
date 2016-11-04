@@ -27,7 +27,7 @@ export const webpackConfig = {
   },
   babel: {
     presets: [
-      'es2015',
+      'env',
       'stage-0',
       'react',
     ],

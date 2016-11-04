@@ -1,5 +1,5 @@
 {
-  "presets": ["es2015", "stage-0", "react", "react-optimize"],
+  "presets": ["env", "stage-0", "react", "react-optimize"],
   "plugins": [
     "transform-flow-strip-types",
     "transform-react-router-optimize",
