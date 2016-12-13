@@ -94,7 +94,7 @@ const handleArguments = (env) => {
     process.chdir(env.cwd)
     log.info(
       'Working directory changed to',
-      chalk.magenta(tildify(env.cwd))
+      chalk.magenta(tildify(env.cwd)),
     )
   }
 

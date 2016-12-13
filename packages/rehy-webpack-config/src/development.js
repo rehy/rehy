@@ -15,7 +15,6 @@ export default config.merge({
       },
     }),
 
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],

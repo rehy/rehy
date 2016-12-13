@@ -7,7 +7,10 @@ import baseConfig from './base'
 
 export default baseConfig.merge((config) => {
   const cssLoader = _.find(config.module.loaders, ['test', /\.css$/])
-  cssLoader.loader = ExtractTextPlugin.extract('style', 'css')
+  cssLoader.loader = ExtractTextPlugin.extract({
+    fallbackLoader: 'style-loader',
+    loader: 'css-loader',
+  })
   return config
 }).merge({
   devtool: 'hidden-source-map',
@@ -26,7 +29,6 @@ export default baseConfig.merge((config) => {
 
     // TODO https://github.com/webpack/webpack/issues/1082
     // new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
