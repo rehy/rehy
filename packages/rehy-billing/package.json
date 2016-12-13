@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {},
   "dependencies": {
-    "lodash": "^4.16.6"
+    "lodash": "^4.17.2"
   },
   "devDependencies": {},
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-billing",
