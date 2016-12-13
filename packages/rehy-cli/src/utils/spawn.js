@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { spawn } from 'child-process-promise'
+import {spawn} from 'child-process-promise'
 
 export default (command, args, options) => {
   const paths = [

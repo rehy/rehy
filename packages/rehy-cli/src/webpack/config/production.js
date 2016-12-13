@@ -3,7 +3,7 @@ import StatsPlugin from 'stats-webpack-plugin'
 
 import webpackConfigBase from 'rehy-webpack-config'
 
-import { renderTemplate } from '../../utils'
+import {renderTemplate} from '../../utils'
 
 const templateContent = () => renderTemplate('cordova.nunjucks')
 

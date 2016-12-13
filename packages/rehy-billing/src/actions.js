@@ -1,13 +1,13 @@
 /* global store */
 
 export const UPDATE_PRODUCT = '@@rehy-billing/UPDATE_PRODUCT'
-const updateProduct = (product) => ({
+const updateProduct = product => ({
   type: UPDATE_PRODUCT,
   payload: product,
 })
 
 export const UPDATE_PRODUCT_BATCH = '@@rehy-billing/UPDATE_PRODUCT_BATCH'
-export const updateProductBatch = (products) => ({
+export const updateProductBatch = products => ({
   type: UPDATE_PRODUCT_BATCH,
   payload: products,
 })

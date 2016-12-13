@@ -1,10 +1,10 @@
 import defaults from 'lodash/defaults'
 import isFunction from 'lodash/isFunction'
 
-import { applyMiddleware, combineReducers, createStore } from 'redux'
-import { composeWithDevTools } from 'remote-redux-devtools'
-import { responsiveStoreEnhancer } from 'redux-responsive'
-import { routerMiddleware } from 'react-router-redux'
+import {applyMiddleware, combineReducers, createStore} from 'redux'
+import {composeWithDevTools} from 'remote-redux-devtools'
+import {responsiveStoreEnhancer} from 'redux-responsive'
+import {routerMiddleware} from 'react-router-redux'
 import thunk from 'redux-thunk'
 
 import * as baseReducers from './reducers'
@@ -14,7 +14,7 @@ const defaultDevToolsOptions = {
   port: Number(process.env.npm_package_remotedev_port) || 8000,
 }
 
-export default ({ history, initialState, reducers, prepareMiddleware, devTools }) => {
+export default ({history, initialState, reducers, prepareMiddleware, devTools}) => {
   const devToolsOpts = defaults(devTools, defaultDevToolsOptions)
   const rootReducer = combineReducers({
     ...baseReducers,

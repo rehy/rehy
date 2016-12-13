@@ -16,11 +16,11 @@ import shell from 'gulp-shell'
 const paths = {
   libs: 'packages/*/lib',
   packageJSONs: ['package.json', 'packages/*/package.json'],
-  scripts: _.flatMap(glob.sync('packages/*'), (packageRoot) => [
+  scripts: _.flatMap(glob.sync('packages/*'), packageRoot => [
     `${packageRoot}/src/**/*.js`,
     `${packageRoot}/src/**/*.jsx`,
   ]),
-  statics: _.flatMap(glob.sync('packages/*'), (packageRoot) => [
+  statics: _.flatMap(glob.sync('packages/*'), packageRoot => [
     `${packageRoot}/src/**/*.nunjucks`,
     `${packageRoot}/src/**/*.sh`,
   ]),
@@ -33,14 +33,14 @@ const resolvePackageRoot = (file) => {
   return `${packageRoot}/lib`
 }
 
-const isJS = (file) => _.endsWith(file.path, '.js') || _.endsWith(file.path, '.jsx')
+const isJS = file => _.endsWith(file.path, '.js') || _.endsWith(file.path, '.jsx')
 
 gulp.task('install', () => gulp.src(_.tail(paths.packageJSONs)).pipe(install()))
 
 gulp.task('ncu', () => gulp.src([
   ...paths.packageJSONs,
   'packages/rehy-cli/project-template/package.json',
-], { read: false })
+], {read: false})
   .pipe(shell([
     'ncu -a --packageFile <%= file.path %>',
   ], {
@@ -49,7 +49,7 @@ gulp.task('ncu', () => gulp.src([
     },
   })))
 
-gulp.task('clean', () => gulp.src(paths.libs, { read: false }).pipe(clean()))
+gulp.task('clean', () => gulp.src(paths.libs, {read: false}).pipe(clean()))
 
 gulp.task('build', () => gulp.src([
   ...paths.scripts,

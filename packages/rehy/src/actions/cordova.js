@@ -1,5 +1,4 @@
-/* global cordova */
-import { listenToEvent } from './event'
+import {listenToEvent} from './event'
 
 export const handleDeviceReady = () => () => {
   if (navigator.splashscreen) {

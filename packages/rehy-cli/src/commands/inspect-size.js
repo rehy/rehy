@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { spawn } from '../utils'
+import {spawn} from '../utils'
 
 export default () => {
   const rootDir = process.cwd()

@@ -14,7 +14,7 @@ import minimatch from 'minimatch'
 import tildify from 'tildify'
 import yargs from 'yargs'
 
-import { version as cliVersion } from '../package.json'
+import {version as cliVersion} from '../package.json'
 
 import cliOptions from './cli-options'
 import * as commands from './commands'
@@ -105,7 +105,7 @@ const handleArguments = (env) => {
   const result = Joi.validate(exported, schema)
   if (result.error) {
     log.error(result.error)
-    process.exit(-1)
+    exit(-1)
   }
 
   const subCommand = _.camelCase(_.get(opts._, [0], 'build'))
@@ -114,7 +114,7 @@ const handleArguments = (env) => {
   })
 }
 
-const emptyDirFilter = (filepath) => !minimatch(filepath, '.git')
+const emptyDirFilter = filepath => !minimatch(filepath, '.git')
 
 export default () => {
   if (opts.help) {

@@ -1,7 +1,7 @@
-import { Provider as IntlProvider } from 'react-intl-redux'
-import React, { PropTypes } from 'react'
+import {Provider as IntlProvider} from 'react-intl-redux'
+import React, {PropTypes} from 'react'
 
-const Provider = ({ children, store }) => {
+const Provider = ({children, store}) => {
   return (
     <IntlProvider store={store}>
       {children}

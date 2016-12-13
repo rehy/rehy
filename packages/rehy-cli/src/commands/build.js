@@ -1,10 +1,10 @@
 import _ from 'lodash'
 
-import { DefinePlugin } from 'webpack'
+import {DefinePlugin} from 'webpack'
 
 import cordovaBulid from '../cordova'
 
-function extendForGoogleAnalytics({ app, cordovaConfig, webpackConfig }) {
+function extendForGoogleAnalytics({app, cordovaConfig, webpackConfig}) {
   const googleAnalyticsId = _.get(app, 'googleAnalyticsId')
   if (googleAnalyticsId === 'UA-xxxxxxxx-x') {
     // eslint-disable-next-line no-param-reassign
@@ -23,14 +23,14 @@ function extendForGoogleAnalytics({ app, cordovaConfig, webpackConfig }) {
   }
 }
 
-function extendForSplashScreen({ cordovaConfig }) {
+function extendForSplashScreen({cordovaConfig}) {
   cordovaConfig.plugins.push({
     name: 'cordova-plugin-splashscreen',
     spec: '~4.0.0',
   })
 }
 
-function extendForRemotedev({ webpackConfig, remotedevConfig }) {
+function extendForRemotedev({webpackConfig, remotedevConfig}) {
   webpackConfig.plugins.push(new DefinePlugin({
     'process.env': {
       npm_package_remotedev_hostname: JSON.stringify(remotedevConfig.hostname),
@@ -45,7 +45,7 @@ function normalizedCordovaPlugins(plugins) {
   }
   return _.map(plugins, (spec, name) => {
     if (_.isString(spec)) {
-      return { name, spec }
+      return {name, spec}
     }
     return {
       ...spec,
@@ -64,8 +64,8 @@ export function normalizeConfig(config) {
     hostname: 'localhost',
     port: 8000,
   })
-  _.defaults(config.cordovaConfig, { plugins: [] })
-  _.defaults(config.webpackConfig, { plugins: [] })
+  _.defaults(config.cordovaConfig, {plugins: []})
+  _.defaults(config.webpackConfig, {plugins: []})
   // eslint-disable-next-line no-param-reassign
   config.cordovaConfig.engines = Object.assign({
     android: '~5.2.2',
@@ -81,11 +81,11 @@ export function normalizeConfig(config) {
   extendForSplashScreen(config)
 }
 
-export default ({ config }) => {
+export default ({config}) => {
   normalizeConfig(config)
 
   cordovaBulid(config).catch((error) => {
     console.error(error.stack)  // eslint-disable-line no-console
-    process.exit(-1)
+    process.exit(-1)  // eslint-disable-line no-process-exit
   })
 }

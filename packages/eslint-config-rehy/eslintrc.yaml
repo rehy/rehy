@@ -1,25 +1,23 @@
 extends:
-  - airbnb-base
-  - xo-space/esnext
-  - xo-react/space
+  - control-freak
+  - concise-react
+  - concise-esnext
   - plugin:ava/recommended
   - plugin:lodash/recommended
-parser: babel-eslint
 plugins:
   - ava
-  - babel
   - lodash
-  - promise
 settings:
   import/resolver:
     node:
       extensions: [".js", ".json", ".jsx"]
 rules:
   arrow-body-style: off
+  max-len: off
+  no-warning-comments: ["off", { terms: ["todo", "fixme", "xxx"], location: "start" }]
   ava/no-ignored-test-files: off
   babel/arrow-parens: off
-  babel/object-curly-spacing: ["error", "always"]
-  comma-dangle: ["error", "always-multiline"]
+  filenames/match-exported: off
   import/no-extraneous-dependencies: ["error", {"devDependencies": true}]
   import/no-mutable-exports: off  # cause "TypeError: Cannot read property 'name' of undefined"
   import/no-named-as-default: off
@@ -28,9 +26,4 @@ rules:
   lodash/prefer-chain: off
   lodash/prefer-constant: off
   lodash/prefer-lodash-method: off
-  max-len: off
-  no-warning-comments: ["off", { terms: ["todo", "fixme", "xxx"], location: "start" }]
-  promise/param-names: error
-  react/jsx-space-before-closing: ["error", "always"]
   react/prop-types: off
-  semi: ["error", "never"]

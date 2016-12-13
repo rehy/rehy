@@ -7,7 +7,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
-import { renderTemplate } from '../utils'
+import {renderTemplate} from '../utils'
 
 import baseConfig from './config'
 

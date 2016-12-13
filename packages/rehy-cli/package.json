@@ -34,7 +34,7 @@
     "progress-bar-webpack-plugin": "^1.9.0",
     "react-intl-translations-manager": "^3.1.0",
     "rehy-webpack-config": "^0.0.32",
-    "remotedev-server": "^0.3.0-beta-2",
+    "remotedev-server": "^0.2.1",
     "stats-webpack-plugin": "^0.4.2",
     "tildify": "^1.2.0",
     "webpack": "^1.14.0",

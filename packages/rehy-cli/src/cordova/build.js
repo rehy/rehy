@@ -11,13 +11,13 @@ import pathExists from 'path-exists'
 import WebpackCleanupPlugin from 'webpack-cleanup-plugin'
 
 import * as webpack from '../webpack'
-import { renderTemplate } from '../utils'
+import {renderTemplate} from '../utils'
 
 import CordovaBuildPlugin from './webpack-plugin'
 
-function renderConfigXML({ templatePath, templateContext }) {
+function renderConfigXML({templatePath, templateContext}) {
   const templateFilename = templatePath || 'config.xml.nunjucks'
-  const { hasSplash, preferences } = templateContext
+  const {hasSplash, preferences} = templateContext
   if (hasSplash) {
     _.defaults(preferences, {
       AutoHideSplashScreen: false,
@@ -30,21 +30,21 @@ function renderConfigXML({ templatePath, templateContext }) {
 }
 
 async function prepareBuildFolder(opts) {
-  const { buildDir, messagesDir, rootDir, configXML = {} } = opts
+  const {buildDir, messagesDir, rootDir, configXML = {}} = opts
   await mkdirp(messagesDir)
   await mkdirp(path.join(buildDir, 'www'))
 
   await cpy([
     'icon.png',
     'splash.png',
-  ], buildDir, { cwd: rootDir })
+  ], buildDir, {cwd: rootDir})
   await execa('cp', ['-R', path.join(__dirname, 'hooks'), buildDir])
 
   const xmlContent = renderConfigXML(configXML)
   await fs.writeFile(path.join(buildDir, 'config.xml'), xmlContent, 'utf8')
 }
 
-export default async function build({ app, cordovaConfig, intlConfig, webpackConfig }) {
+export default async function build({app, cordovaConfig, intlConfig, webpackConfig}) {
   const rootDir = process.cwd()
   const buildDir = path.join(rootDir, '.rehy/local/cordova-build')
   const messagesDir = path.join(rootDir, '.rehy/local/intl-messages')
@@ -82,17 +82,20 @@ export default async function build({ app, cordovaConfig, intlConfig, webpackCon
     if (_.isEmpty(intlConfig)) {
       return {}
     }
+
+    function intlPlugin() {
+      this.plugin('done', () => {
+        manageTranslations({
+          translationsDirectory: 'messages/',
+          ...intlConfig,
+          messagesDirectory: messagesDir,
+        })
+      })
+    }
+
     return {
       plugins: [
-        function intlPlugin() {
-          this.plugin('done', () => {
-            manageTranslations({
-              translationsDirectory: 'messages/',
-              ...intlConfig,
-              messagesDirectory: messagesDir,
-            })
-          })
-        },
+        intlPlugin,
       ],
       babel: {
         plugins: [

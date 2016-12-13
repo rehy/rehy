@@ -1,12 +1,12 @@
 /* global GA */
-import { syncHistoryWithStore } from 'react-router-redux'
+import {syncHistoryWithStore} from 'react-router-redux'
 
 import createStore from './store'
 import polyfillIntl from './polyfill-intl'
 
 import initCordova from './entry/cordova'
 
-function getAppNode({ appNode }) {
+function getAppNode({appNode}) {
   if (appNode) {
     return appNode
   }
@@ -14,7 +14,7 @@ function getAppNode({ appNode }) {
 }
 
 function bootstrap(opts) {
-  const { history, initialState, reducers, prepareMiddleware, devTools } = opts
+  const {history, initialState, reducers, prepareMiddleware, devTools} = opts
   const appNode = getAppNode(opts)
 
   const store = createStore({
@@ -26,11 +26,11 @@ function bootstrap(opts) {
   })
   const enhancedHistory = syncHistoryWithStore(history, store)
 
-  initCordova({ store })
+  initCordova({store})
 
   if (process.env.GOOGLE_ANALYTICS_ID && process.env.NODE_ENV === 'production' && window.GA) {
     GA.startTrackerWithId(process.env.GOOGLE_ANALYTICS_ID)
-    enhancedHistory.listen(location => {
+    enhancedHistory.listen((location) => {
       GA.trackView(location.pathname)
     })
   }
@@ -42,6 +42,6 @@ function bootstrap(opts) {
   }
 }
 
-export default function (opts) {
+export default function(opts) {
   return polyfillIntl().then(() => bootstrap(opts))
 }

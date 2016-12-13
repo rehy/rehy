@@ -1,4 +1,4 @@
-import { UPDATE_PRODUCT, UPDATE_PRODUCT_BATCH } from './actions'
+import {UPDATE_PRODUCT, UPDATE_PRODUCT_BATCH} from './actions'
 
 export default (state = {}, action) => {
   switch (action.type) {

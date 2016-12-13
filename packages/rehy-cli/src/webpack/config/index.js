@@ -17,7 +17,7 @@ const validateConfig = (config) => {
 export default validateConfig(webpackConfigBase.extend({
   [path.resolve(__dirname, './[env].js')]: (config) => {
     // eslint-disable-next-line no-param-reassign
-    config.module.loaders = config.module.loaders.map((loader) => _.omit(loader, 'id'))
+    config.module.loaders = config.module.loaders.map(loader => _.omit(loader, 'id'))
     return config
   },
 }).merge({

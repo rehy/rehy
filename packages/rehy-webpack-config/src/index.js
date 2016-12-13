@@ -1,6 +1,6 @@
 import path from 'path'
 
-import Config, { environment } from 'webpack-config'
+import Config, {environment} from 'webpack-config'
 
 environment.setAll({
   env() {
