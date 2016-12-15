@@ -6,9 +6,9 @@
   "scripts": {},
   "dependencies": {
     "babel-core": "^6.20.0",
-    "babel-loader": "^6.2.9",
+    "babel-loader": "^6.2.10",
     "css-loader": "^0.26.1",
-    "debug": "^2.3.3",
+    "debug": "^2.4.4",
     "extract-text-webpack-plugin": "^2.0.0-beta.4",
     "file-loader": "^0.9.0",
     "json-loader": "^0.5.4",
@@ -19,7 +19,7 @@
     "webpack-config": "~6.2.1"
   },
   "devDependencies": {
-    "webpack-validator": "^2.2.12"
+    "webpack-validator": "^2.3.0"
   },
   "repository": "https://github.com/rehy/rehy/tree/master/packages/rehy-webpack-config",
   "author": "Ratson",
