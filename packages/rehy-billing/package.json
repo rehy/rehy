@@ -1,6 +1,6 @@
 {
   "name": "rehy-billing",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Redux binding for Corodova billing.",
   "main": "lib/index.js",
   "scripts": {},
